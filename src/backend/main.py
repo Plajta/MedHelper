@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request
 
 app = Flask("PlajtaMed", template_folder='src/frontend/templates', static_url_path='/static', static_folder='src/frontend/static')
 
@@ -10,7 +10,13 @@ def index():
 def admin():
     return render_template('admin.html')
 
-@app.route('/login')
+@app.route('/login', methods = ['POST', 'GET'])
 def login():
-    return render_template('login.html')
-
+    if request.method == 'POST':
+        user = request.form['username']
+        pwd = request.form['password']
+        if user == "amogus" and pwd == "ballz":
+            return redirect("admin")
+        return "Blbečku!"
+    else:
+        return render_template('login.html')
