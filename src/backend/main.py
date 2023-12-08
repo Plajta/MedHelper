@@ -1,8 +1,6 @@
-import os
 from flask import Flask, render_template
 
-template_dir = os.path.abspath('../frontend/')
-app = Flask("PlajtaMed", template_folder=template_dir)
+app = Flask("PlajtaMed", template_folder='src/frontend/templates', static_url_path='/static', static_folder='src/frontend/static')
 
 @app.route('/')
 def index():
