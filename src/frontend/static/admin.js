@@ -34,10 +34,10 @@ window.onload = () => {
             let header = document.createElement("h3")
             header.innerHTML = `Jméno: <span>${patients_data[i]["name"]}</span>`
             header.classList.add("user-header")
-            header.id = patients_data[i]["userid"]
+            header.id = patients_data[i]["id"]
 
             let description = document.createElement("p")
-            description.innerHTML = patients_data[i]["desc"]
+            description.innerHTML = `Narození: ${patients_data[i]["birth"]}`
 
             let button = document.createElement("button")
             button.innerHTML = "Odstranit"

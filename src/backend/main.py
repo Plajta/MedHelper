@@ -48,13 +48,15 @@ def handle_message_admin(data):
     if data == "send-patients":
         print("Send patients!")
 
-        patient_array = [{
-            "name": "františek hřímal",
-            "desc": "Haha popis",
-            "userid": "46154151a1f5a1sf3as"
-        }]
+        patient_list = []
 
-        message_array = [{
+        for patient in Patient.query.all():
+            patient_d={}
+            for column in patient.__table__.columns:
+                patient_d[column.name] = str(getattr(patient, column.name))
+            patient_list.append(patient_d)
+
+        message_list = [{
             "name": "Žena #1",
             "message": "Yo nezavřeli jste okno a tak mi umrzly koule, fakt díky"
         },
@@ -63,7 +65,7 @@ def handle_message_admin(data):
             "message": "Otevřete okno?"
         }]
 
-        questions_array = [{
+        questions_list = [{
             "name": "Žena #1",
             "message": "Tato nemocnice se mi nelíbí, je cringe"
         },
@@ -73,11 +75,11 @@ def handle_message_admin(data):
         }]
 
         emit("patients-data", {
-                "patients": patient_array,
-                "messages": message_array,
-                "questions": questions_array
+                "patients": patient_list,
+                "messages": message_list,
+                "questions": questions_list
             })
 
 @socketio.on("delete-patient")
 def handle_delete(data):
-    print(data)
+    pass
