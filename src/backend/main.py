@@ -16,7 +16,7 @@ def admin():
         print(name)
 
 
-    return render_template('admin.html')
+    return render_template('admin.html', user="Damongus Veliký", position="Bůh všehomíra", auth="69")
 
 @app.route("/about")
 def about():
