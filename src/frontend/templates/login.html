@@ -8,25 +8,36 @@
         <script src="{{ url_for('static', filename='login.js') }}"></script>
     </head>
     <body>
-        <form id="login-form" method="post">
+        <div class="center_box">
             <div id="login">
-                <h2 class="login-header">MedHelper Admin login</h2>
-                <div class="block">
-                    <label for="username" id="login-text">Uživatelské jméno:</label><br>
-                    <input type="text" class="form" id="form1" name="username"><br>
-                </div>
-                <div class="block">
-                    <label for="password" id="login-text">Heslo:</label><br>
-                    <input type="password" class="form" id="form2" name="password"><br>
-                </div>
-                <div id="confirm">
-                    <button class="login-but" type="submit">Přihlásit se</button>
-                </div>
+                <form id="login-form" method="post">
+                    <h2 class="login-header">MedHelper Admin login</h2>
+                    <div class="block">
+                        <label for="username" id="login-text">Uživatelské jméno:</label><br>
+                        <input type="text" class="form" id="form1" name="username"><br>
+                    </div>
+                    <div class="block">
+                        <label for="password" id="login-text">Heslo:</label><br>
+                        <input type="password" class="form" id="form2" name="password"><br>
+                    </div>
+                    <div class="block">
+                        <label for="password" id="login-text">Zapamatovat:</label><br>
+                        <input type="checkbox" class="form" id="form3" name="remember"><br>
+                    </div>
+                    <div id="confirm">
+                        <button class="login-but" type="submit">Přihlásit se</button>
+                    </div>
+                </form>
+            </div>
+            <div class="message-box">
                 {% if error %}
-                    <p class="error"><strong> {{ error }} </strong>
+                    <p class="error"><strong> <br>{{ error }} </strong>
+                {% endif %}
+                {% if info %}
+                    <p class="info"><strong> <br>{{ info }} </strong>
                 {% endif %}
             </div>
-        </form>
+        </div>
         <div class="footer">
             <p>Made by Plajta Labs, on <a href="https://github.com/Plajta/MedHelper">Github</a></p>
         </div>
