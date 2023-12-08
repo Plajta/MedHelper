@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_socketio import SocketIO, emit
+import os
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
@@ -13,9 +14,10 @@ def create_app():
                 template_folder='../frontend/templates',
                 static_url_path='/static',
                 static_folder='../frontend/static')
+    current_working_directory = os.getcwd()
 
     app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(current_working_directory,'db.sqlite')}"
 
     db.init_app(app)
 
