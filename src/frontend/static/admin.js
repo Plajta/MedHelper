@@ -9,7 +9,6 @@ window.onload = () => {
     })
 
     socket.on("patients-data", (data) => {
-        console.log(data)
         let patients_div = document.getElementById("patient-list")
 
         for (let i = 0; i < data["data"].length; i++){
@@ -20,7 +19,9 @@ window.onload = () => {
 
             let header = document.createElement("h3")
             header.innerHTML = `Jméno: <span>${data["data"][i]["name"]}</span>`
-            
+            header.classList.add("user-header")
+            header.id = data["data"][i]["userid"]
+
             let description = document.createElement("p")
             description.innerHTML = data["data"][i]["desc"]
 
@@ -33,6 +34,15 @@ window.onload = () => {
             patient.appendChild(button)
 
             patients_div.appendChild(patient)
+        }
+
+        for (let i = 0; i < patients_div.children.length; i++){
+            if (patients_div.children[i].tagName == "DIV"){
+                patients_div.children[i].getElementsByClassName("but")[0].addEventListener("click", (event) => {
+                    var userid = event.target.parentElement.getElementsByClassName("user-header")[0].id
+                    socket.emit("delete-patient", userid)
+                })
+            }
         }
     })
 

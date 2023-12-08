@@ -178,6 +178,16 @@ input:checked + .slider:before {
     padding-right: 15px;
 }
 
+#questions{
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+}
+
 .message{
     background-color: #ddd;
     margin: 10px;
@@ -196,6 +206,10 @@ input:checked + .slider:before {
 }
 
 .buttons button{
+    display: inline-block;
+}
+
+.main-content div#messages, .main-content div#questions{
     display: inline-block;
 }
 
