@@ -3,9 +3,9 @@ window.onload = () => {
 
     //socket.io event listeners
     socket.on("connect", () => {
-        //fetch all patients
+        //fetch all patients (only for admin part)
         socket.emit("admin-event", "send-patients")
-
+        
     })
 
     socket.on("patients-data", (data) => {

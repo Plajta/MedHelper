@@ -6,11 +6,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Inria+Sans&family=Montserrat:wght@300;400&family=Saira&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
         <script src="{{ url_for('static', filename='admin.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
     </head>
     <body>
         <div class="topnav">
             <a class="selectable" href="/admin">Admin</a>
             <a class="selectable active" href="/about">About</a>
+            <a class="selectable" href="/register">Registrace uživatelů</a>
             <label class="switch">
                 <input type="checkbox">
                 <span class="slider"></span>

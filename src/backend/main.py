@@ -28,6 +28,7 @@ def admin():
         db.session.add(new_patient)
         db.session.commit()
 
+
     displayname = current_user.displayname
     rank = current_user.rank
     level = current_user.level
@@ -37,6 +38,26 @@ def admin():
 @main.route("/about")
 def about():
     return render_template("about.html")
+
+@main.route("/register", methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        try:
+            username = request.form['username']
+            password = request.form['password']
+            name = request.form["name"]
+            level = request.form["level"]
+            
+        except Exception as err:
+            socketio.emit("registration-valid", "failure")
+        else:
+            socketio.emit("registration-valid", "success")
+
+
+    if current_user.level == 0:
+        return render_template("register.html")
+    else:
+        return "401 - Operation not permitted", 401
 
 #
 # SOCKETIO ROUTES
@@ -58,7 +79,7 @@ def handle_message_admin(data):
 
         message_list = [{
             "name": "Žena #1",
-            "message": "Yo nezavřeli jste okno a tak mi umrzly koule, fakt díky"
+            "message": "Yo nezavřeli jste okno, fakt díky"
         },
         {
             "name": "Muž #1",

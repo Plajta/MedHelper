@@ -332,9 +332,56 @@ LOGIN HTML
     transition: 0.3s;
 }
 
+.dark-mode{
+    background-color: #333;
+    color: white;
+}
+
 /*
 ABOUT HTML
 */
 .content{
     margin-left: 25px;
+}
+
+/*
+REGISTRATION HTML
+*/
+
+.reg-content{
+    width: 80%;
+    border: 2px solid black;
+    padding: 15px;
+    display: flow-root;
+    border-radius: 5px;
+}
+
+.reg-content form{
+    float: left;
+}
+
+.registration-but{
+    font-size: 24px;
+    background-color: black;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 100px 50px;
+    float: right;
+    margin-right: 50px;
+    cursor: pointer;
+}
+
+.registration-but:hover{
+    background-color: #ccc;
+    color: black;
+    transition: 0.3s;
+}
+
+.reg-form{
+    width: 75%;
+}
+
+.reg-form .form{
+    width: 80%;
 }
