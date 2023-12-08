@@ -8,7 +8,7 @@ def index():
 
 @app.route('/admin')
 def admin():
-    return render_template('admin.html')
+    return render_template('admin.html', user="Damongus Veliký", position="Bůh všehomíra", auth="69")
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
