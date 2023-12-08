@@ -2,6 +2,7 @@ body{
     background-color: white;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
+    overflow-x: hidden;
 }
 
 h3{
@@ -124,4 +125,18 @@ input:checked + .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+}
+
+.footer{
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer a{
+    color: #2196F3;
+    text-decoration: none;
 }
