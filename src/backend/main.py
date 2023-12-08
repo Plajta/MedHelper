@@ -47,11 +47,13 @@ def register():
             password = request.form['password']
             name = request.form["name"]
             level = request.form["level"]
+
+            #TODO: log to database
             
         except Exception as err:
-            socketio.emit("registration-valid", "failure")
+            return render_template("response.html", code="500", message="Internal server error")
         else:
-            socketio.emit("registration-valid", "success")
+            return render_template("response.html", code="200", message="Operation successful")
 
 
     if current_user.level == 0:

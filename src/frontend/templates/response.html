@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inria+Sans&family=Montserrat:wght@300;400&family=Saira&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="topnav">
+            <a class="selectable" href="/admin">Admin</a>
+            <a class="selectable" href="/about">About</a>
+            <a class="selectable active" href="/register">Registrace uživatelů</a>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="content">
+            <h2>{{code}}</h2>
+            <h3>{{message}}</h3>
+        </div>
+        <div class="footer">
+            <p>Made by Plajta Labs, on <a href="https://github.com/Plajta/MedHelper">Github</a></p>
+        </div>
+    </body>
+</html>
