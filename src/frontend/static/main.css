@@ -223,3 +223,10 @@ LOGIN HTML
     color: black;
     transition: 0.3s;
 }
+
+/*
+ABOUT HTML
+*/
+.content{
+    margin-left: 25px;
+}

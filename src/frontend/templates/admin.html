@@ -26,15 +26,17 @@
                 </div>
             </div>
             <div id="register">
-                <label for="fname">Jméno:</label>
-                <input type="text" id="fname" name="fname" placeholder="John"><br>
-                <label for="fname">Příjmení:</label>
-                <input type="text" id="fname" name="fname" placeholder="Doe"><br>
+                <form id="confirm-form" method="post">
+                    <label for="fname">Jméno:</label>
+                    <input type="text" id="fname" name="fname" placeholder="John"><br>
+                    <label for="lname">Příjmení:</label>
+                    <input type="text" id="lname" name="lname" placeholder="Doe"><br>
 
-                <label for="start">Datum narození:</label>
-                <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" /><br>
-            
-                <button class="but">Potvrdit</button>
+                    <label for="birth">Datum narození:</label>
+                    <input type="date" id="birth" name="birth" value="2018-07-22" min="2018-01-01" max="2018-12-31" /><br>
+                
+                    <button type="submit" class="but" id="confirm-but">Potvrdit</button>
+                </form>
             </div>
             <div id="patient-list">
                 <h3>Seznam pacientů</h3>

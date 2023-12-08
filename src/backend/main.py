@@ -6,9 +6,21 @@ app = Flask("PlajtaMed", template_folder='src/frontend/templates', static_url_pa
 def index():
     return render_template('main.html')
 
-@app.route('/admin')
+@app.route('/admin', methods=['POST', 'GET'])
 def admin():
+    if request.method == 'POST':
+        name = request.form['fname']
+        lastname = request.form['lname']
+        birth = request.form['birth']
+
+        print(name)
+
+
     return render_template('admin.html')
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
