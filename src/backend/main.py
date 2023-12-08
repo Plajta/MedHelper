@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, flash
 from flask_login import login_required, current_user
+from werkzeug.security import generate_password_hash
 from flask_socketio import SocketIO, emit
 import uuid
 from . import socketio
-from .models import Patient
+from .models import Patient, Doctor
 from . import db
 
 main = Blueprint('main', __name__)
@@ -38,28 +39,6 @@ def admin():
 @main.route("/about")
 def about():
     return render_template("about.html")
-
-@main.route("/register", methods=['POST', 'GET'])
-def register():
-    if request.method == 'POST':
-        try:
-            username = request.form['username']
-            password = request.form['password']
-            name = request.form["name"]
-            level = request.form["level"]
-
-            #TODO: log to database
-            
-        except Exception as err:
-            return render_template("response.html", code="500", message="Internal server error")
-        else:
-            return render_template("response.html", code="200", message="Operation successful")
-
-
-    if current_user.level == 0:
-        return render_template("register.html")
-    else:
-        return "401 - Operation not permitted", 401
 
 #
 # SOCKETIO ROUTES

@@ -74,6 +74,46 @@ def signup_post():
     return redirect(url_for('auth.login'))
 
 
+@auth.route("/register", methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        try:
+            username = request.form.get("username")
+            password = request.form.get("password")
+            displayname = request.form.get("displayname")
+            rank = request.form.get("rank")
+            level = request.form.get("level")
+
+            user = Doctor.query.filter_by(username=username).first() # if this returns a user, then the email already exists in database
+
+            if user: # if a user is found, we want to redirect back to signup page so user can try again  
+                flash('Username address already exists')
+                #TODO: dodělat!
+                print("Uživatel existuje")
+                return redirect(url_for('auth.register'))
+
+            id = str(uuid.uuid4())
+
+            # create new user with the form data. Hash the password so plaintext version isn't saved.
+            new_user = Doctor(id=id ,username=username, displayname=displayname, password=generate_password_hash(password, method='sha256'), rank=rank, level=int(level))
+
+            # add the new user to the database
+            db.session.add(new_user)
+            db.session.commit()
+            
+        except Exception as err:
+            print(err)
+            return render_template("response.html", code="500", message="Internal server error")
+        else:
+            return render_template("response.html", code="200", message="Operation successful")
+
+
+    if current_user.level == 0:
+        return render_template("register.html")
+    else:
+        return "401 - Operation not permitted", 401
+
+
 @auth.route('/logout')
 @login_required
 def logout():
