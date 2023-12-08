@@ -16,12 +16,16 @@ def index():
 @login_required
 def admin():
     if request.method == 'POST':
-        displayname = request.form['displayname']
-        rank = request.form['rank']
-        level = request.form['level']
+        fname = request.form['fname']
+        lname = request.form['lname']
+        birth = request.form['birth']
 
         #generate user id
         userid = uuid.uuid4()
+
+    displayname = current_user.displayname
+    rank = current_user.rank
+    level = current_user.level
 
     return render_template('admin.html', displayname=displayname, rank=rank, level=level)
 
