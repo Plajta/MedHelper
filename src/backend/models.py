@@ -1,7 +1,7 @@
 from flask_login import UserMixin
 from . import db
 
-class Doctor(db.Model):
+class Doctor(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True)
     password = db.Column(db.String(100))
