@@ -4,13 +4,13 @@ app = Flask("PlajtaMed", template_folder='src/frontend/templates', static_url_pa
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('main.html')
 
 @app.route('/admin')
-def index():
+def admin():
     return render_template('admin.html')
 
 @app.route('/login')
-def index():
+def login():
     return render_template('login.html')
 
