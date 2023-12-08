@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inria+Sans&family=Montserrat:wght@300;400&family=Saira&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <script src="{{ url_for('static', filename='admin.js') }}"></script>
+    </head>
+    <body>
+        <div class="topnav">
+            <a class="selectable active" href="#home">Admin</a>
+            <a class="selectable" href="#news">About</a>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="footer">
+            <p>Made by Plajta Labs, on <a href="https://github.com/Plajta/MedHelper">Github</a></p>
+        </div>
+    </body>
+</html>
