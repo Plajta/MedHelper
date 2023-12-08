@@ -6,6 +6,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Inria+Sans&family=Montserrat:wght@300;400&family=Saira&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
         <script src="{{ url_for('static', filename='admin.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
     </head>
     <body>
         <div class="topnav">
@@ -35,7 +36,7 @@
                     <label for="birth">Datum narození:</label>
                     <input type="date" id="birth" name="birth" value="2018-07-22" min="2018-01-01" max="2018-12-31" /><br>
                 
-                    <button type="submit" class="but" id="confirm-but">Potvrdit</button>
+                    <button type="button" class="but" id="confirm-but">Potvrdit</button>
                 </form>
             </div>
             <div id="messages">
@@ -43,20 +44,28 @@
                 <div class="message">
                     <h4>Žena #1:</h4>
                     <p>Yo nezavřeli jste okno a tak mi umrzly koule, fakt díky</p>
+
+                    <div class="buttons">
+                        <button class="message-but">Odpovědět</button>
+                        <button class="message-but">Přeposlat</button>
+                        <button class="message-but">Zobrazit konverzaci</button>
+                    </div>
+                </div>
+                <div class="message">
+                    <h4>Muž #1:</h4>
+                    <p>Otevřete okno?</p>
+
+                    <div class="buttons">
+                        <button class="message-but">Odpovědět</button>
+                        <button class="message-but">Přeposlat</button>
+                        <button class="message-but">Zobrazit konverzaci</button>
+                    </div>
                 </div>
             </div>
             <div id="patient-list">
                 <h3>Seznam pacientů</h3>
                 <label for="start">Hledat:</label>
                 <input type="text" id="searchbar" name="fname" placeholder="Hledej..."><br>
-                <div id="patients">
-                    <div class="patient">
-                        <h3>Jméno: <span>František Hřímal</span></h3>
-                        <p>Haha popis</p>
-
-                        <button class="but">Odstranit</button>
-                    </div>
-                </div>
             </div>
         </div>
 
