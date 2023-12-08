@@ -4,8 +4,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inria+Sans&family=Montserrat:wght@300;400&family=Saira&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="main.css">
-        <script src="login.js"></script> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        <script src="{{ url_for('static', filename='login.js') }}"></script>
     </head>
     <body>
         <div id="login">
