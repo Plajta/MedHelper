@@ -68,10 +68,6 @@ window.onload = () => {
             respond.classList.add("message-but")
             respond.innerHTML = "Odpovědět"
 
-            let resend = document.createElement("button")
-            resend.classList.add("message-but")
-            resend.innerHTML = "Přeposlat"
-
             let show = document.createElement("button")
             show.classList.add("message-but")
             show.innerHTML = "Zobrazit konverzaci"
@@ -80,7 +76,6 @@ window.onload = () => {
             message.appendChild(message_text)
 
             buttons_div.appendChild(respond)
-            buttons_div.appendChild(resend)
             buttons_div.appendChild(show)
             message.appendChild(buttons_div)
 
@@ -115,6 +110,9 @@ window.onload = () => {
                 patients_div.children[i].getElementsByClassName("but")[0].addEventListener("click", (event) => {
                     var userid = event.target.parentElement.getElementsByClassName("user-header")[0].id
                     socket.emit("delete-patient", userid)
+
+                    //get new patients
+                    socket.emit("admin-event", "send-patients")
                 })
             }
         }
@@ -122,9 +120,8 @@ window.onload = () => {
 
     //event listeners
     document.querySelector("#confirm-but").addEventListener("click", (event) => {
-        document.getElementById("confirm-form").submit()
-
-        //fetch all patients
-        socket.emit("admin-event", "send-patients")
+        let name = document.getElementById("name").value
+        let birth = document.getElementById("birth").value
+        socket.emit("patient-data", [name, birth])
     })
 }

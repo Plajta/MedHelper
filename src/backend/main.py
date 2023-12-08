@@ -9,27 +9,43 @@ from . import db
 
 main = Blueprint('main', __name__)
 
+def process_patients():
+    patient_list = []
+
+    for patient in Patient.query.all():
+        patient_d={}
+        for column in patient.__table__.columns:
+            patient_d[column.name] = str(getattr(patient, column.name))
+        patient_list.append(patient_d)
+
+    message_list = [{
+        "name": "Žena #1",
+        "message": "Yo nezavřeli jste okno, fakt díky"
+    },
+    {
+        "name": "Muž #1",
+        "message": "Otevřete okno?"
+    }]
+
+    questions_list = [{
+        "name": "Žena #1",
+        "message": "Tato nemocnice se mi nelíbí, je cringe"
+    },
+    {
+        "name": "Muž #1",
+        "message": "Otevřete okno?"
+    }]
+
+    return patient_list, message_list, questions_list
 
 @main.route('/')
 def index():
     return render_template('main.html')
 
 
-@main.route('/admin', methods=['POST', 'GET'])
+@main.route('/admin')
 @login_required
 def admin():
-    if request.method == 'POST':
-        name = request.form['name']
-        birth = request.form['birth']
-
-        id = str(uuid.uuid4())
-
-        new_patient = Patient(name=name, birth=birth, id=id)
-
-        db.session.add(new_patient)
-        db.session.commit()
-
-
     displayname = current_user.displayname
     rank = current_user.rank
     level = current_user.level
@@ -50,37 +66,33 @@ def handle_message_admin(data):
     if data == "send-patients":
         print("Send patients!")
 
-        patient_list = []
-
-        for patient in Patient.query.all():
-            patient_d={}
-            for column in patient.__table__.columns:
-                patient_d[column.name] = str(getattr(patient, column.name))
-            patient_list.append(patient_d)
-
-        message_list = [{
-            "name": "Žena #1",
-            "message": "Yo nezavřeli jste okno, fakt díky"
-        },
-        {
-            "name": "Muž #1",
-            "message": "Otevřete okno?"
-        }]
-
-        questions_list = [{
-            "name": "Žena #1",
-            "message": "Tato nemocnice se mi nelíbí, je cringe"
-        },
-        {
-            "name": "Muž #1",
-            "message": "Otevřete okno?"
-        }]
+        patient_list, message_list, questions_list = process_patients()
 
         emit("patients-data", {
-                "patients": patient_list,
-                "messages": message_list,
-                "questions": questions_list
-            })
+            "patients": patient_list,
+            "messages": message_list,
+            "questions": questions_list
+        })
+
+@socketio.on("patient-data")
+def handle_patient_data(data):
+    name = data[0]
+    birth = data[1]
+
+    id = str(uuid.uuid4())
+
+    new_patient = Patient(name=name, birth=birth, id=id)
+
+    db.session.add(new_patient)
+    db.session.commit()
+
+    patient_list, message_list, questions_list = process_patients()
+
+    emit("patients-data", {
+            "patients": patient_list,
+            "messages": message_list,
+            "questions": questions_list
+    })
 
 @socketio.on("delete-patient")
 def handle_delete(data):
