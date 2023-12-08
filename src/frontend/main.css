@@ -1,3 +1,67 @@
 body{
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+
+h3{
+    margin: 0;
+}
+
+p{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#register{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+#patient-list{
+    margin-top: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+#searchbar{
+    width: 100%;
+    height: 20px;
+    margin-bottom: 20px;
+}
+
+.but{
     background-color: black;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.patient{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
 }
