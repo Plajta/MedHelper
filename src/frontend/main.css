@@ -65,6 +65,13 @@ p{
     border: 0;
     border-radius: 5px;
     padding: 5px 10px;
+    cursor: pointer;
+}
+
+.but:hover{
+    background-color: #ccc;
+    color: black;
+    transition: 0.3s;
 }
 
 .patient{
@@ -72,6 +79,7 @@ p{
     border-radius: 5px;
     padding-top: 5px;
     padding-left: 15px;
+    padding-bottom: 5px;
 }
 
 .switch {
