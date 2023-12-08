@@ -4,6 +4,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inria+Sans&family=Montserrat:wght@300;400&family=Saira&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
         <script src="{{ url_for('static', filename='admin.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
@@ -67,20 +69,17 @@
                     <p>Máte 10 dotazníků:</p>
                     <div class="message">
                         <h4>Žena #1:</h4>
-                        <p>Zpráva: Tato nemocnice se mi nelíbí, je cringe</p>
-                        
-                        <div>
-                            <div class="bloc" id="rating1"></div>
-                            <div class="bloc" id="rating2"></div>
-                            <div class="bloc" id="rating3"></div>
-                            <div class="bloc" id="rating4"></div>
-                            <div class="bloc" id="rating5"></div>
-                            <div class="bloc" id="rating6"></div>
-                        </div>
+                        <p class="small-header">Přiložená zpráva:</p>
+                        <p>Tato nemocnice se mi nelíbí, je cringe</p>
+
+                        <button class="message-but">Detailní rozbor</button>
                     </div>
                     <div class="message">
                         <h4>Muž #1:</h4>
+                        <p class="small-header">Přiložená zpráva:</p>
                         <p>Otevřete okno?</p>
+
+                        <button class="message-but">Detailní rozbor</button>
                     </div>
                 </div>
             </div>

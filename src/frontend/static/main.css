@@ -176,16 +176,29 @@ input:checked + .slider:before {
     padding-left: 15px;
     padding-bottom: 5px;
     padding-right: 15px;
+    margin-right: 10px;
 }
 
 #questions{
     border: 1px solid black;
     border-radius: 5px;
-    margin-top: 20px;
     padding-top: 5px;
     padding-left: 15px;
     padding-bottom: 5px;
     padding-right: 15px;
+}
+
+.main-content{
+    overflow-y: scroll;
+}
+
+div.bloc.selected{
+    height: 70px;
+    width: 70px;
+}
+
+.small-header{
+    font-weight: bold;
 }
 
 .message{

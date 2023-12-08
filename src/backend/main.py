@@ -13,7 +13,7 @@ def index():
 
 
 @main.route('/admin', methods=['POST', 'GET'])
-@login_required
+#@login_required
 def admin():
     if request.method == 'POST':
         name = request.form['fname']
@@ -23,7 +23,7 @@ def admin():
         #generate user id
         userid = uuid.uuid4()
 
-    return render_template('admin.html', user=current_user.name, position="Bůh všehomíra", auth="69")
+    return render_template('admin.html', user="Amogus", position="Bůh všehomíra", auth="69")
 
 @main.route("/about")
 def about():

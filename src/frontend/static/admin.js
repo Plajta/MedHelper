@@ -10,6 +10,13 @@ window.onload = () => {
 
     socket.on("patients-data", (data) => {
         let patients_div = document.getElementById("patient-list")
+        
+        //delete all patients
+        for (let i = patients_div.children.length - 1; i >= 0; i--){
+            if (patients_div.children[i].tagName == "DIV"){
+                patients_div.removeChild(patients_div.children[i])
+            }
+        }
 
         for (let i = 0; i < data["data"].length; i++){
             console.log(data["data"][i])
