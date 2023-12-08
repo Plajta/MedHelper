@@ -1,25 +1,19 @@
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Blueprint, render_template, request
+from flask_login import login_required, current_user
 from flask_socketio import SocketIO, emit
-from flask_login import LoginManager, UserMixin, login_user, logout_user
 import uuid
+from . import socketio
 
-app = Flask("PlajtaMed", template_folder='src/frontend/templates', static_url_path='/static', static_folder='src/frontend/static')
-socketio = SocketIO(app)
-
-#
-# APP ROUTES
-#
-
-login_manager = LoginManager()
-login_manager.init_app(app)
+main = Blueprint('main', __name__)
 
 
-@app.route('/')
+@main.route('/')
 def index():
     return render_template('main.html')
 
 
-@app.route('/admin', methods=['POST', 'GET'])
+@main.route('/admin', methods=['POST', 'GET'])
+@login_required
 def admin():
     if request.method == 'POST':
         name = request.form['fname']
@@ -29,29 +23,16 @@ def admin():
         #generate user id
         userid = uuid.uuid4()
 
-    return render_template('admin.html', user="Damongus Veliký", position="Bůh všehomíra", auth="69")
+    return render_template('admin.html', user=current_user.name, position="Bůh všehomíra", auth="69")
 
-
-@app.route("/about")
+@main.route("/about")
 def about():
     return render_template("about.html")
-
-
-@app.route('/login', methods = ['POST', 'GET'])
-def login():
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Please try again.'
-        else:
-            return redirect(url_for('admin'))
-    return render_template('login.html', error=error)
-    
-
 
 #
 # SOCKETIO ROUTES
 #
+
 
 @socketio.on("admin-event")
 def handle_message_admin(data):
@@ -69,6 +50,3 @@ def handle_message_admin(data):
 @socketio.on("delete-patient")
 def handle_delete(data):
     print(data)
-
-if __name__ == "__main__":
-    socketio.run(app, allow_unsafe_werkzeug=True)
