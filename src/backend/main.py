@@ -82,4 +82,5 @@ def handle_message_admin(data):
 
 @socketio.on("delete-patient")
 def handle_delete(data):
-    pass
+    db.session.delete(Patient.query.filter_by(id=data).first())
+    db.session.commit()
