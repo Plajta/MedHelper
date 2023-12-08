@@ -1,0 +1,187 @@
+/* 
+# FUCKIN RESERT 
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* 
+# FUCKIN RESERT 
+*/
+
+
+
+/* 
+    GOOGLE FONTS 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Montserrat', sans-serif;
+	line-height: normal;
+	font-style: normal;
+}
+.main{
+	height: 100vh;
+	width: 100vw;
+	padding: 100px 80px;
+	z-index: 2;
+}
+.main2{
+	height: 100vh;
+	width: 100vw;
+	z-index: 2;
+	padding: 0 30px;
+}
+.button-normal{
+	margin: 0 auto;
+	padding: 40px 100px 40px 250px;
+	font-size: 40pt;
+	border: none;
+	border-radius: 30px;
+	background-color: #5C849A;
+	color: white;
+	z-index: 2;
+}
+.nav_bar{
+	position: fixed; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+	background-color: #5C849A;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+.nav_button{
+	margin-top: 40px;
+	height: 260px;
+	width: 300px;
+	background-color: white;
+	border-radius: 50px 50px 0 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.nav_chosen{
+	margin-top: 20px;
+	height: 280px;
+}
+.nav_icon{
+	font-size: 150px;
+}
+
+
+.main_frame{
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.topbar{
+	background-color: white;
+	padding: 50px 55px 60px 60px;
+	border-radius: 0 0 60px 60px;
+
+
+}
+
+.topbar_flex{
+	display: flex;
+	flex-direction: row;
+	gap: 50px;
+	align-items: baseline;
+	justify-content: space-between;
+}
+
+.topbar_calendar{
+	display: flex;
+	flex-direction: row;
+	gap: 50px;
+	align-items: baseline;
+}
+.kolecko{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: #D9D9D9;
+}
+.kolecko2{
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 15px;
+	background-color: #D9D9D9;
+}
+
+
+.news_card{
+	background-color: #fff;
+	border-radius: 60px;
+	padding: 60px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+.news_card_description{
+	margin-left: 10px;
+}
+.emtrydiv{
+	height: 350px;
+	background-color: #EEEEEE;
+}
+.write_message{
+position: fixed;
+width: 180px;
+height: 180px;
+background-color: #5C849A;
+bottom: 380px;
+right: 95px;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
