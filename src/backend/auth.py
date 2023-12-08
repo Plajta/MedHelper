@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 from .models import Doctor
 from . import db
+import uuid
 
 auth = Blueprint('auth', __name__)
 
@@ -46,14 +47,17 @@ def signup_post():
     rank = request.form.get('rank')
     level = request.form.get('level')
 
+
     user = Doctor.query.filter_by(username=username).first() # if this returns a user, then the email already exists in database
 
     if user: # if a user is found, we want to redirect back to signup page so user can try again  
         flash('Username address already exists')
         return redirect(url_for('auth.signup'))
 
+    id = str(uuid.uuid4())
+
     # create new user with the form data. Hash the password so plaintext version isn't saved.
-    new_user = Doctor(username=username, displayname=displayname, password=generate_password_hash(password, method='sha256'), rank=rank, level=level)
+    new_user = Doctor(id=id ,username=username, displayname=displayname, password=generate_password_hash(password, method='sha256'), rank=rank, level=level)
 
     # add the new user to the database
     db.session.add(new_user)

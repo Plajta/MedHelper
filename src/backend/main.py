@@ -3,6 +3,8 @@ from flask_login import login_required, current_user
 from flask_socketio import SocketIO, emit
 import uuid
 from . import socketio
+from .models import Patient
+from . import db
 
 main = Blueprint('main', __name__)
 
@@ -16,12 +18,15 @@ def index():
 @login_required
 def admin():
     if request.method == 'POST':
-        fname = request.form['fname']
-        lname = request.form['lname']
+        name = request.form['name']
         birth = request.form['birth']
 
-        #generate user id
-        userid = uuid.uuid4()
+        id = str(uuid.uuid4())
+
+        new_patient = Patient(name=name, birth=birth, id=id)
+
+        db.session.add(new_patient)
+        db.session.commit()
 
     displayname = current_user.displayname
     rank = current_user.rank
