@@ -5,7 +5,7 @@ body{
     overflow-x: hidden;
 }
 
-h3{
+h3, h2{
     margin: 0;
 }
 
@@ -151,6 +151,21 @@ input:checked + .slider:before {
 .footer a{
     color: #2196F3;
     text-decoration: none;
+}
+
+#info{
+    float: left;
+    margin-bottom: 25px;;
+}
+
+.span-text{
+    font-weight: normal;
+}
+
+.vl{
+    border-left: 6px solid #333;
+    height: 100px;
+    margin-right: 10px;
 }
 
 /*
