@@ -9,28 +9,35 @@ window.onload = () => {
     })
 
     socket.on("patients-data", (data) => {
+        let patients_data = data["patients"]
+        let messages_data = data["messages"]
+        let questions_data = data["questions"]
+
         let patients_div = document.getElementById("patient-list")
-        
-        //delete all patients
-        for (let i = patients_div.children.length - 1; i >= 0; i--){
+        let messages_div = document.getElementById("messages")
+        let questions_div = document.getElementById("questions")
+
+        for (let i = patients_div.children.length - 1; i >= 0; i--){;
             if (patients_div.children[i].tagName == "DIV"){
                 patients_div.removeChild(patients_div.children[i])
             }
         }
+        messages_div.innerHTML = ""
+        questions_div.innerHTML = ""
 
-        for (let i = 0; i < data["data"].length; i++){
-            console.log(data["data"][i])
+        //add patients
+        for (let i = 0; i < patients_data.length; i++){
             //create patient record
             let patient = document.createElement("div")
             patient.classList.add("patient")
 
             let header = document.createElement("h3")
-            header.innerHTML = `Jméno: <span>${data["data"][i]["name"]}</span>`
+            header.innerHTML = `Jméno: <span>${patients_data[i]["name"]}</span>`
             header.classList.add("user-header")
-            header.id = data["data"][i]["userid"]
+            header.id = patients_data[i]["userid"]
 
             let description = document.createElement("p")
-            description.innerHTML = data["data"][i]["desc"]
+            description.innerHTML = patients_data[i]["desc"]
 
             let button = document.createElement("button")
             button.innerHTML = "Odstranit"
@@ -43,6 +50,66 @@ window.onload = () => {
             patients_div.appendChild(patient)
         }
 
+        //add messages
+        for (let i = 0; i < messages_data.length; i++){
+            let message = document.createElement("div")
+            message.classList.add("message")
+
+            let header = document.createElement("h4")
+            header.innerHTML = messages_data[i]["name"] + ":"
+
+            let message_text = document.createElement("p")
+            message_text.innerHTML = messages_data[i]["message"]
+
+            let buttons_div = document.createElement("div")
+            buttons_div.classList.add("buttons")
+
+            let respond = document.createElement("button")
+            respond.classList.add("message-but")
+            respond.innerHTML = "Odpovědět"
+
+            let resend = document.createElement("button")
+            resend.classList.add("message-but")
+            resend.innerHTML = "Přeposlat"
+
+            let show = document.createElement("button")
+            show.classList.add("message-but")
+            show.innerHTML = "Zobrazit konverzaci"
+
+            message.appendChild(header)
+            message.appendChild(message_text)
+
+            buttons_div.appendChild(respond)
+            buttons_div.appendChild(resend)
+            buttons_div.appendChild(show)
+            message.appendChild(buttons_div)
+
+            messages_div.appendChild(message)
+        }
+
+        //add questions
+        for (let i = 0; i < questions_data.length; i++){
+            let message = document.createElement("div")
+            message.classList.add("message")
+
+            let header = document.createElement("h4")
+            header.innerHTML = questions_data[i]["name"] + ":"
+
+            let message_text = document.createElement("p")
+            message_text.innerHTML = questions_data[i]["message"]
+
+            let show_more_but = document.createElement("button")
+            show_more_but.classList.add("message-but")
+            show_more_but.innerHTML = "Detailní rozbor"
+
+            message.appendChild(header)
+            message.appendChild(message_text)
+            message.appendChild(show_more_but)
+
+            questions_div.appendChild(message)
+        }
+
+        //event listeners
         for (let i = 0; i < patients_div.children.length; i++){
             if (patients_div.children[i].tagName == "DIV"){
                 patients_div.children[i].getElementsByClassName("but")[0].addEventListener("click", (event) => {

@@ -45,7 +45,29 @@ def handle_message_admin(data):
             "userid": "46154151a1f5a1sf3as"
         }]
 
-        emit("patients-data", {"data": patient_array})
+        message_array = [{
+            "name": "Žena #1",
+            "message": "Yo nezavřeli jste okno a tak mi umrzly koule, fakt díky"
+        },
+        {
+            "name": "Muž #1",
+            "message": "Otevřete okno?"
+        }]
+
+        questions_array = [{
+            "name": "Žena #1",
+            "message": "Tato nemocnice se mi nelíbí, je cringe"
+        },
+        {
+            "name": "Muž #1",
+            "message": "Otevřete okno?"
+        }]
+
+        emit("patients-data", {
+                "patients": patient_array,
+                "messages": message_array,
+                "questions": questions_array
+            })
 
 @socketio.on("delete-patient")
 def handle_delete(data):

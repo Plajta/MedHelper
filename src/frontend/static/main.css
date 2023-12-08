@@ -216,6 +216,7 @@ div.bloc.selected{
     padding: 5px 10px;
     cursor: pointer;
     margin-top: 10px;
+    margin-right: 5px;
 }
 
 .buttons button{
@@ -249,6 +250,10 @@ div.bloc.selected{
 }
 #rating6{
     background-color: #0CFF00;
+}
+
+a.active{
+    background-color: #2196F3;
 }
 
 /*
