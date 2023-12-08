@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inria+Sans&family=Montserrat:wght@300;400&family=Saira&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="main.css">
-        <script src="main.js"></script> 
+        <script src="login.js"></script> 
     </head>
     <body>
+        <div id="login">
+            <h2 class="login-header">MedHelper Admin login</h2>
+            <div class="block">
+                <label for="fname" id="login-text">Uživatelské jméno:</label><br>
+                <input type="text" class="form" id="form1" name="fname"><br>
+            </div>
+            <div class="block">
+                <label for="fname" id="login-text">Heslo:</label><br>
+                <input type="text" class="form" id="form2" name="fname"><br>
+            </div>
+            <div id="confirm">
+                <button class="login-but">Přihlásit se</button>
+            </div>
+        </div>         
         <div class="footer">
             <p>Made by Plajta Labs, on <a href="https://github.com/Plajta/MedHelper">Github</a></p>
         </div>

@@ -14,6 +14,10 @@ p{
     margin-bottom: 5px;
 }
 
+/*
+ADMIN HTML
+*/
+
 #register{
     border: 1px solid black;
     border-radius: 5px;
@@ -147,4 +151,60 @@ input:checked + .slider:before {
 .footer a{
     color: #2196F3;
     text-decoration: none;
+}
+
+/*
+LOGIN HTML
+*/
+
+#login{
+    position: absolute;
+    left: 40%;
+    width: 400px;
+    height: 30%;
+    top: 30%;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 15px 15px;
+}
+
+#login .form{
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+#login-text{
+    font-weight: bold;
+}
+
+.login-header{
+    text-align: center;
+}
+
+#login .block{
+    margin: auto;
+    width: 50%;
+    margin-right: 105px;
+}
+
+#confirm{
+    margin: auto;
+    text-align: center;
+}
+
+.login-but{
+    font-size: 24px;
+    background-color: black;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 15px 50px;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 25px;
+}
+.login-but:hover{
+    background-color: #ccc;
+    color: black;
+    transition: 0.3s;
 }
