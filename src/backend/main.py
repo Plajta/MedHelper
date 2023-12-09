@@ -37,6 +37,15 @@ def process_patients():
 
     return patient_list, message_list, questions_list
 
+def update_frontend():
+    patient_list, message_list, questions_list = process_patients()
+
+    emit("patients-data", {
+        "patients": patient_list,
+        "messages": message_list,
+        "questions": questions_list
+    })
+
 @main.route('/')
 def app_first():
     return render_template('app_first.html')
@@ -62,13 +71,6 @@ def app_chat():
 def app_profile():
     return render_template('app_user.html')
 
-#
-# WEBAPP SOCKETIO ROUTES
-#
-@socketio.on("message-user-send")
-def user_message(data):
-    print(data)
-
 @main.route('/admin')
 @login_required
 def admin():
@@ -82,21 +84,6 @@ def admin():
 def about():
     return render_template("about.html")
 
-@socketio.on("message-user-send")
-def user_message(data):
-    user_id = data["uuid"]
-    body = data["message"]
-    response = False
-    timestamp = date.today()
-    patient = Patient.query.filter_by(id=user_id).first()
-
-    new_message = Message(user_id=user_id, body=body, response=response, timestamp=timestamp, patient=patient)
-
-    db.session.add(new_message)
-    db.session.commit()
-
-    print(new_message)
-
 #
 # SOCKETIO ROUTES
 #
@@ -105,13 +92,7 @@ def handle_message_admin(data):
     if not isinstance(data, dict) and data.has_key("command"):
         return
     if data["command"] == "send-patients":
-        patient_list, message_list, questions_list = process_patients()
-
-        emit("patients-data", {
-            "patients": patient_list,
-            "messages": message_list,
-            "questions": questions_list
-        })
+        update_frontend()
 
     elif data["command"] == "patient-data":
         name = data["name"]
@@ -127,13 +108,7 @@ def handle_message_admin(data):
         db.session.add(new_patient)
         db.session.commit()
 
-        patient_list, message_list, questions_list = process_patients()
-
-        emit("patients-data", {
-                "patients": patient_list,
-                "messages": message_list,   
-                "questions": questions_list
-        })
+        update_frontend()
     
     elif data["command"] == "delete-patient":
         db.session.delete(Patient.query.filter_by(id=data["uuid"]).first())
@@ -144,3 +119,18 @@ def handle_message_admin(data):
         timestamp = date.fromtimestamp()
 
         new_message = Message()
+
+@socketio.on("message-user-send")
+def user_message(data):
+    user_id = data["uuid"]
+    body = data["message"]
+    response = False
+    timestamp = date.today()
+    patient = Patient.query.filter_by(id=user_id).first()
+
+    new_message = Message(user_id=user_id, body=body, response=response, timestamp=timestamp, patient=patient)
+
+    db.session.add(new_message)
+    db.session.commit()
+
+    update_frontend()
