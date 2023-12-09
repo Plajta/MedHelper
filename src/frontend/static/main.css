@@ -364,20 +364,22 @@ LOGIN HTML
     background-color: #2196F3;
     color: white;
     border-radius: 10px;
-    padding: 5px;
-    width: 120px;
-    margin: auto;
-    margin-right: 0px;
+    padding: 4px;
+    //width: 120px;
+    //margin: auto;
+    //margin-right: 0px;
+    float: right;
 }
 
 .their-message{
     background-color: #ccc;
     color: black;
     border-radius: 10px;
-    padding: 5px;
-    width: 120px;
-    margin: auto;
-    margin-left: 0px;
+    padding: 4px;
+    //width: 120px;
+    //margin: auto;
+    //margin-left: 0px;
+    float: left;
 }
 
 #conv{

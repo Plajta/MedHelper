@@ -13,6 +13,7 @@ import os, shutil
 
 main = Blueprint('main', __name__)
 
+
 def genQR():
     pattern = "[^0-9a-zA-Z]+"
     if os.path.isdir("/tmp/medhelper"):
@@ -63,17 +64,17 @@ def update_admin_frontend():
 
 @main.route('/')
 def app_first():
-    uuid = request.args.get('uuid', default = None, type = str)
+    uuid = request.args.get('uuid', default=None, type=str)
     if uuid == None:
         return render_template("response_client.html", code="401", message="nemáš oprávnění, špatné user info")
-    #username = Patient.query.filter_by(id=uuid).first().name
-    #TODO: load username!
+    # username = Patient.query.filter_by(id=uuid).first().name
+    # TODO: load username!
     return render_template('app_first.html')
 
 
 @main.route('/sec-init')
 def app_second():
-    uuid = request.args.get('uuid', default = None, type = str)
+    uuid = request.args.get('uuid', default=None, type=str)
     if uuid == None:
         return render_template("response_client.html", code="401", message="nemáš oprávnění, špatné user info")
 
@@ -82,7 +83,7 @@ def app_second():
 
 @main.route('/third-init')
 def app_third():
-    uuid = request.args.get('uuid', default = None, type = str)
+    uuid = request.args.get('uuid', default=None, type=str)
     if uuid == None:
         return render_template("response_client.html", code="401", message="nemáš oprávnění, špatné user info")
 
@@ -91,7 +92,7 @@ def app_third():
 
 @main.route('/home')
 def app_home():
-    uuid = request.args.get('uuid', default = None, type = str)
+    uuid = request.args.get('uuid', default=None, type=str)
     if uuid == None:
         return render_template("response_client.html", code="401", message="nemáš oprávnění, špatné user info")
 
@@ -100,17 +101,17 @@ def app_home():
 
 @main.route('/chat')
 def app_chat():
-    uuid = request.args.get('uuid', default = None, type = str)
+    uuid = request.args.get('uuid', default=None, type=str)
     if uuid == None:
         return render_template("response_client.html", code="401", message="nemáš oprávnění, špatné user info")
 
-    #print(url_for("main.app", _external=True))
+    # print(url_for("main.app", _external=True))
     return render_template('app_chat.html')
 
 
 @main.route('/profile')
 def app_profile():
-    uuid = request.args.get('uuid', default = None, type = str)
+    uuid = request.args.get('uuid', default=None, type=str)
     if uuid == None:
         return render_template("response_client.html", code="401", message="nemáš oprávnění, špatné user info")
 
@@ -131,6 +132,7 @@ def admin():
 def about():
     return render_template("about.html")
 
+
 @main.route("/download")
 def download():
     path = genQR()
@@ -143,7 +145,7 @@ def download():
 #
 @socketio.on("admin-event")
 def handle_message_admin(data):
-    if not isinstance(data, dict) or not "command" in data:
+    if not isinstance(data, dict) or "command" not in data:
         return
     if data["command"] == "send-patients":
         update_admin_frontend()
@@ -182,6 +184,7 @@ def handle_message_admin(data):
 
         update_admin_frontend()
 
+
 @socketio.on("message-user-send")
 def user_message(data):
     placement_id = data["uuid"]
@@ -201,14 +204,16 @@ def user_message(data):
 @socketio.on("load-chat")
 def load_chat(data):
     uuid = data["uuid"]
-    
+
     message_list = []
 
     if data["type"] == "messages":
         for message in Message.query.filter_by(user_id=uuid):
-            message_d = {"name": message.patient.name, "uuid": message.user_id, "message": message.body, "response": message.response}
+            message_d = {"name": message.patient.name, "uuid": message.user_id, "message": message.body,
+                         "response": message.response}
             message_list.append(message_d)
     emit("update-messages", message_list)
+
 
 @socketio.on("send-space")
 def send_space(data):

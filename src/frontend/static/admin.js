@@ -45,7 +45,7 @@ function send_message(){
     var message_data = document.getElementById("chat-input").value
     socket.emit("admin-event", {body: message_data,
                                 uuid: selected_user_uuid,
-                                command: "message-send"})
+                                command: "response-send"})
 }
 
 window.onload = () => {
@@ -214,9 +214,9 @@ window.onload = () => {
         header.innerHTML = "Chat s uživatelem: " + message_list[0]["name"]
         header.id = message_list[0]["uuid"]
 
-        let message = document.createElement("div")
-
         for (let i = 0; i < message_list.length ; i++){
+
+            let message = document.createElement("div")
 
             if (message_list[i]["response"]){
                 message.classList.add("your-message")
@@ -227,8 +227,10 @@ window.onload = () => {
             let message_text = document.createElement("p")
             message_text.innerHTML = message_list[i]["message"]
 
-            conv_div.appendChild(message)
             message.appendChild(message_text)
+            conv_div.appendChild(message)
+            conv_div.appendChild(document.createElement("br"))
+            conv_div.appendChild(document.createElement("br"))
 
         }
     })
