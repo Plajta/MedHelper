@@ -13,6 +13,10 @@ import os, shutil
 
 main = Blueprint('main', __name__)
 
+def check_for_uuid():
+    uuid = request.args.get('uuid', default = None, type = str)
+    if uuid == None:
+        return render_template("response_client.html", code="401", message="nemáš oprávnění, špatné user info")
 
 def genQR():
     pattern = "[^0-9a-zA-Z]+"
@@ -67,7 +71,7 @@ def update_admin_frontend():
 
 @main.route('/')
 def app_first():
-    uuid = request.args.get('uuid', default = None, type = str)
+    check_for_uuid()
     #username = Patient.query.filter_by(id=uuid).first().name
     #TODO: load username!
     return render_template('app_first.html')
@@ -75,27 +79,37 @@ def app_first():
 
 @main.route('/sec-init')
 def app_second():
+    check_for_uuid()
+
     return render_template('app_second.html')
 
 
 @main.route('/third-init')
 def app_third():
+    check_for_uuid()
+
     return render_template('app_third.html')
 
 
 @main.route('/home')
 def app_home():
+    check_for_uuid()
+
     return render_template('app_home.html')
 
 
 @main.route('/chat')
 def app_chat():
+    check_for_uuid()
+
     #print(url_for("main.app", _external=True))
     return render_template('app_chat.html')
 
 
 @main.route('/profile')
 def app_profile():
+    check_for_uuid()
+
     return render_template('app_user.html')
 
 
