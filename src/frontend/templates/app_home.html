@@ -8,33 +8,33 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='app_main.css') }}">
     </head>
     <body>
-        div
-        <div class="question-block">
-            <h2>Dotazník:</h2>
-            <p>Jakou máš náladu?</p>
-            <div class="blocks">
-                <div class="colorblock" id="col1">
-                    <i class="fa-solid fa-face-angry" onclick="change_val(event)"></i>
+        <div class="main">
+            <div class="question-block">
+                <h2>Dotazník:</h2>
+                <p>Jakou máš náladu?</p>
+                <div class="blocks">
+                    <div class="colorblock" id="col1">
+                        <i class="fa-solid fa-face-angry" onclick="change_val(event)"></i>
+                    </div>
+                    <div class="colorblock" id="col2">
+                        <i class="fa-solid fa-face-frown" onclick="change_val(event)"></i>
+                    </div>
+                    <div class="colorblock" id="col3">
+                        <i class="fa-solid fa-face-meh" onclick="change_val(event)"></i>
+                    </div>
+                    <div class="colorblock" id="col4">
+                        <i class="fa-solid fa-face-smile" onclick="change_val(event)"></i>
+                    </div>
+                    <div class="colorblock" id="col5">
+                        <i class="fa-solid fa-face-smile-beam" onclick="change_val(event)"></i>
+                    </div>
+                    <div class="colorblock" id="col6">
+                        <i class="fa-solid fa-face-grin-stars" onclick="change_val(event)"></i>
+                    </div>
                 </div>
-                <div class="colorblock" id="col2">
-                    <i class="fa-solid fa-face-frown" onclick="change_val(event)"></i>
-                </div>
-                <div class="colorblock" id="col3">
-                    <i class="fa-solid fa-face-meh" onclick="change_val(event)"></i>
-                </div>
-                <div class="colorblock" id="col4">
-                    <i class="fa-solid fa-face-smile" onclick="change_val(event)"></i>
-                </div>
-                <div class="colorblock" id="col5">
-                    <i class="fa-solid fa-face-smile-beam" onclick="change_val(event)"></i>
-                </div>
-                <div class="colorblock" id="col6">
-                    <i class="fa-solid fa-face-grin-stars" onclick="change_val(event)"></i>
-                </div>
+                <button class="confirm-but" onclick="send_summary()">Odeslat</button>
             </div>
-            <button class="confirm-but" onclick="send_summary()">Odeslat</button>
         </div>
-        
 
         <div class="nav_bar">
             <div onclick="home()" id="home_button" class="nav_button selected">
