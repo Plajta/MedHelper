@@ -43,9 +43,36 @@ def process_patients():
     return patient_list, message_list, questions_list
 
 @main.route('/')
-def app():
+def app_first():
+    return render_template('app_first.html')
+
+@main.route('/sec-init')
+def app_second():
+    return render_template('app_second.html')
+
+@main.route('/third-init')
+def app_third():
+    return render_template('app_third.html')
+
+@main.route('/home')
+def app_home():
+    return render_template('app_home.html')
+
+@main.route('/chat')
+def app_chat():
     print(url_for("main.app", _external=True))
     return render_template('app_chat.html')
+
+@main.route('/profile')
+def app_profile():
+    return render_template('app_user.html')
+
+#
+# WEBAPP SOCKETIO ROUTES
+#
+@socketio.on("message-user-send")
+def user_message(data):
+    print(data)
 
 @main.route('/admin')
 @login_required
