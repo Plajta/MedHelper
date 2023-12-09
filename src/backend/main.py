@@ -179,4 +179,11 @@ def load_chat(data):
 
 @socketio.on("send-space")
 def send_space(data):
-    print(data)
+    name = data
+
+    id = str(uuid.uuid4())
+
+    new_placement = Placement(id=id, placement=name)
+
+    db.session.add(new_placement)
+    db.session.commit()
