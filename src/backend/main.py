@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash
 from flask_socketio import SocketIO, emit
 import uuid
 from . import socketio
-from .models import Patient, Doctor, Message, Placement
+from .models import Patient, Doctor, Message, Placement, Questionnaire
 from . import db
 from datetime import date
 import qrcode
@@ -41,16 +41,12 @@ def process_patients():
             message_d = {"name": message.patient.name, "uuid": message.user_id, "message": message.body}
             message_list.append(message_d)
 
-    questions_list = [{
-        "name": "Žena #1",
-        "uuid": "nbknakgmaů",
-        "message": "Tato nemocnice se mi nelíbí, je cringe"
-    },
-        {
-            "name": "Muž #1",
-            "uuid": "najkkgnal",
-            "message": "Otevřete okno?"
-        }]
+    questions_list = []
+    
+    for questionnaire in Questionnaire.query.all():
+        if questionnaire.patient is not None:
+            question_d = {"name": questionnaire.patient.name, "uuid": questionnaire.user_id, "message": questionnaire.answers}
+            questions_list.append(question_d)
 
     return patient_list, message_list, questions_list
 
