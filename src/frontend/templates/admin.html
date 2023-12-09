@@ -40,12 +40,13 @@
                     <input type="date" id="birth" name="birth" value="2001-09-11" min="2000-01-01" max="2099-12-31" /><br>
                 
                     <label for="space">Přiřazené místo/místnost:</label>
-                    <p>{{places[0].placement}}</p>
+                    {% if places%}
                     <select id="space" name="space">
                         {% for place in places %}
                         <option value="{{place.id}}">{{place.placement}}</option>
                         {% endfor %}
                     </select><br>
+                    {% endif %}
 
                     <button type="button" class="but" id="confirm-but">Potvrdit</button>
                 </form>
