@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, url_for
 from flask_login import login_required, current_user
 from werkzeug.security import generate_password_hash
 from flask_socketio import SocketIO, emit
 import uuid
 from . import socketio
-from .models import Patient, Doctor
+from .models import Patient, Doctor, Message
 from . import db
 from datetime import date
 main = Blueprint('main', __name__)
@@ -44,16 +44,8 @@ def process_patients():
 
 @main.route('/')
 def app():
+    print(url_for("main.app", _external=True))
     return render_template('app_chat.html')
-
-
-
-#
-# WEBAPP SOCKETIO ROUTES
-#
-@socketio.on("message-user-send")
-def user_message(data):
-    print(data)
 
 @main.route('/admin')
 @login_required
@@ -114,16 +106,9 @@ def handle_message_admin(data):
         body = data["body"]
         timestamp = date.fromtimestamp()
 
-@socketio.on("load-chat")
-def load_chat_data(data):
-    uuid = data["uuid"]
-    print(uuid)
-    if data["type"] == "messages":
-        #load data for messages
-        pass
-    elif data["type"] == "questions":
-        #load data for questions
-        pass
-    else:
-        #load data for patients
-        pass
+        new_message = Message()
+
+
+@socketio.on("message-user-send")
+def user_message(data):
+    print(data)
