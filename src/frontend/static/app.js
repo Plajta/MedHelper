@@ -14,20 +14,35 @@ APP FUNCS
 */
 
 function home(){
-    window.location.href = "/home"
+    Continue("/home")
 }   
 function chat(){
-    window.location.href = "/chat"
+    Continue("/chat")
 }
 function profile(){
-    window.location.href = "/profile"
+    Continue("/profile")
+}
+
+function Continue(dest){
+    var url = window.location.href.split("?")[1]
+    var uuid = url.split("=")[1]
+
+    window.location.href = dest + "?user=" + uuid + "?checked=1"
+}
+
+function ContinueAndSend(){
+    var url = window.location.href.split("?")[1]
+    var uuid = url.split("=")[1]
+
+    window.location.href = "/home?user=" + uuid + "?checked=1"
 }
 
 //chat funcs
 function send_message(){
     var chat = document.getElementById("chat-input")
-    var loc_url = window.location.href.split("?")[1]
-    var user_hash = loc_url.split("=")[1]
+    var url = window.location.href.split("?")[1]
+    var uuid = url.split("=")[1]
+    console.log(uuid)
 
     socket.emit("message-user-send", {
         "message": chat.value,

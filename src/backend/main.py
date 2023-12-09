@@ -74,7 +74,7 @@ def app_home():
 
 @main.route('/chat')
 def app_chat():
-    print(url_for("main.app_home", _external=True))
+    #print(url_for("main.app", _external=True))
     return render_template('app_chat.html')
 
 
