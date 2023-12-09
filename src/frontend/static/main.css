@@ -349,7 +349,9 @@ LOGIN HTML
 
 #popup{
     z-index: 3;
-    position: absolute;
+    position: fixed;
+    margin: auto;
+    bottom: 100px;
     background-color: #dad5d5;
     border: 2px solid black;
     border-radius: 10px;

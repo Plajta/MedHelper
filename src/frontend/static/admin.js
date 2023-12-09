@@ -29,7 +29,7 @@ function show_popup(elem, sel){
         uuid = elem.parentElement.parentElement.getElementsByClassName("user-header")[0].id
         socket.emit("load-chat", {
             "uuid": uuid,
-            "type": "patients"
+            "type": "messages"
         })
     }
     selected_user_uuid = uuid
@@ -201,17 +201,22 @@ window.onload = () => {
     socket.on("update-messages", (message_list) => {
         console.log("BallZZZZZ")
 
+        let conv_div = document.getElementById("conv")
+
+        for (let i = conv_div.children.length - 1; i >= 0; i--){
+            conv_div.removeChild(conv_div.children[i])
+        }
+
         //load chat
-        for (let i = 0; i < message_list.length; i++){
-            let conv = document.createElement("div")
-            conv.id = "conv"
 
-            let header = document.createElement("h3")
-            header.innerHTML = "Chat s uživatelem: " + message_list[i]["name"]
-            header.classList.add("header")
-            header.id = messages_data[i]["uuid"]
+        let header = document.getElementById("popup").getElementsByTagName("h3")[0]
+        header.innerHTML = "Chat s uživatelem: " + message_list[0]["name"]
+        header.id = message_list[0]["uuid"]
 
-            let message = document.createElement("div")
+        let message = document.createElement("div")
+
+        for (let i = 0; i < message_list.length ; i++){
+
             if (message_list[i]["response"]){
                 message.classList.add("your-message")
             }
@@ -221,19 +226,10 @@ window.onload = () => {
             let message_text = document.createElement("p")
             message_text.innerHTML = message_list[i]["message"]
 
-            let buttons_div = document.createElement("div")
-            buttons_div.classList.add("buttons")
-
-            conv.appendChild(message)
+            conv_div.appendChild(message)
             message.appendChild(message_text)
 
-            buttons_div.appendChild(show)
-            message.appendChild(buttons_div)
-
-            let messages_div = document.getElementById("popup")
-            messages_div.appendChild(message)
         }
-
     })
 
     //event listeners
