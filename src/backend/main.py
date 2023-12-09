@@ -7,13 +7,15 @@ from . import socketio
 from .models import Patient, Doctor, Message
 from . import db
 from datetime import date
+
 main = Blueprint('main', __name__)
+
 
 def process_patients():
     patient_list = []
 
     for patient in Patient.query.all():
-        patient_d={}
+        patient_d = {}
         for column in patient.__table__.columns:
             patient_d[column.name] = str(getattr(patient, column.name))
         patient_list.append(patient_d)
@@ -21,7 +23,7 @@ def process_patients():
     message_list = []
 
     for message in Message.query.all():
-        message_d={"name":message.patient.name, "uuid": message.user_id, "message": message.body}
+        message_d = {"name": message.patient.name, "uuid": message.user_id, "message": message.body}
         message_list.append(message_d)
 
     questions_list = [{
@@ -29,13 +31,14 @@ def process_patients():
         "uuid": "nbknakgmaů",
         "message": "Tato nemocnice se mi nelíbí, je cringe"
     },
-    {
-        "name": "Muž #1",
-        "uuid": "najkkgnal",
-        "message": "Otevřete okno?"
-    }]
+        {
+            "name": "Muž #1",
+            "uuid": "najkkgnal",
+            "message": "Otevřete okno?"
+        }]
 
     return patient_list, message_list, questions_list
+
 
 def update_admin_frontend():
     patient_list, message_list, questions_list = process_patients()
@@ -46,32 +49,39 @@ def update_admin_frontend():
         "questions": questions_list
     })
 
+
 @main.route('/')
 def app_first():
     uuid = request.args.get('uuid', default = None, type = str)
     username = Patient.query.filter_by(id=uuid).first().name
     return render_template('app_first.html',username=username)
 
+
 @main.route('/sec-init')
 def app_second():
     return render_template('app_second.html')
+
 
 @main.route('/third-init')
 def app_third():
     return render_template('app_third.html')
 
+
 @main.route('/home')
 def app_home():
     return render_template('app_home.html')
+
 
 @main.route('/chat')
 def app_chat():
     print(url_for("main.app_home", _external=True))
     return render_template('app_chat.html')
 
+
 @main.route('/profile')
 def app_profile():
     return render_template('app_user.html')
+
 
 @main.route('/admin')
 @login_required
@@ -82,16 +92,18 @@ def admin():
 
     return render_template('admin.html', displayname=displayname, rank=rank, level=level)
 
+
 @main.route("/about")
 def about():
     return render_template("about.html")
+
 
 #
 # SOCKETIO ROUTES
 #
 @socketio.on("admin-event")
 def handle_message_admin(data):
-    if not isinstance(data, dict) and data.has_key("command"):
+    if not isinstance(data, dict) and "command" in data:
         return
     if data["command"] == "send-patients":
         update_admin_frontend()
@@ -111,7 +123,7 @@ def handle_message_admin(data):
         db.session.commit()
 
         update_admin_frontend()
-    
+
     elif data["command"] == "delete-patient":
         db.session.delete(Patient.query.filter_by(id=data["uuid"]).first())
         db.session.commit()
@@ -121,6 +133,7 @@ def handle_message_admin(data):
         timestamp = date.fromtimestamp()
 
         new_message = Message()
+
 
 @socketio.on("message-user-send")
 def user_message(data):
@@ -136,6 +149,7 @@ def user_message(data):
     db.session.commit()
 
     update_admin_frontend()
+
 
 @socketio.on("load-chat")
 def load_chat(data):

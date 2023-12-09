@@ -144,6 +144,39 @@ window.onload = () => {
             messages_div.appendChild(message)
         }
 
+        //load chat
+        for (let i = 0; i < messages_data.length; i++){
+            let conv = document.createElement("div")
+            conv.id = "conv"
+
+            let header = document.createElement("h3")
+            header.innerHTML = "Chat s uživatelem: " + messages_data[i]["name"]
+            header.classList.add("header")
+            header.id = messages_data[i]["uuid"]
+
+            let message = document.createElement("div")
+            if (message_data[i]["response"]){
+                message.classList.add("your-message")
+            }
+            else {
+                message.classList.add("their-message")
+            }
+            let message_text = document.createElement("p")
+            message_text.innerHTML = messages_data[i]["message"]
+
+            let buttons_div = document.createElement("div")
+            buttons_div.classList.add("buttons")
+
+            conv.appendChild(message)
+            message.appendChild(message_text)
+
+            buttons_div.appendChild(show)
+            message.appendChild(buttons_div)
+
+            let messages_div = document.getElementById("popup")
+            messages_div.appendChild(message)
+        }
+
         //add questions
         for (let i = 0; i < questions_data.length; i++){
             let message = document.createElement("div")
