@@ -69,11 +69,11 @@ p{
 }
 
 #bot-bar{
-    position: absolute;
     margin: auto;
     padding: 30px;
-    gap: 40px;
+    position: absolute;
     bottom: 350px;
+    gap: 10px;
     background-color: #fff;
     display: flex;
     flex-direction: row;
@@ -97,29 +97,32 @@ p{
     padding: 20px;
     height: 1600px;
 }
-
-
+.chat_div{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 .your-message{
     color: white;
-    background-color: #09a4f8;
+    background-color: #DADFE1;
     width: 40%;
-    border-radius: 10px;
-    padding: 15px;
+    border-radius: 40px 40px 0 40px;
+    padding: 30px;
     font-size: 25px;
-    margin: auto;
-    margin-right: 25px;
+    margin-left: auto;
+    color: #000;
+    font-size: 40px;
 }
 
 .their-message{
-    color: white;
-    background-color: #7e8183;
+    color: black;
+    background-color: #fff;
     width: 40%;
-    border-radius: 10px;
-    padding: 15px;
+    border-radius: 0 40px 40px 40px;
+    padding: 30px;
     font-size: 25px;
-    margin: auto;
-
-    margin-left: 25px;
+    margin-right: auto;
+    font-size: 40px;
 }
 
 .question-block{
@@ -197,4 +200,9 @@ p{
 
 .main{
     padding: 50px;
+}
+.chat_main_div{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
 }
