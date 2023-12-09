@@ -8,39 +8,9 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='app_main.css') }}">
     </head>
     <body>
-<<<<<<< HEAD
-        <div class="main">
-            <div class="question-block">
-                <h2>Dotazník:</h2>
-                <p>Jakou máš náladu?</p>
-                <div class="blocks">
-                    <div class="colorblock" id="col1">
-                        <i class="fa-solid fa-face-angry"></i>
-                    </div>
-                    <div class="colorblock" id="col2">
-                        <i class="fa-solid fa-face-frown"></i>
-                    </div>
-                    <div class="colorblock" id="col3">
-                        <i class="fa-solid fa-face-meh"></i>
-                    </div>
-                    <div class="colorblock" id="col4">
-                        <i class="fa-solid fa-face-smile"></i>
-                    </div>
-                    <div class="colorblock" id="col5">
-                        <i class="fa-solid fa-face-smile-beam"></i>
-                    </div>
-                    <div class="colorblock" id="col6">
-                        <i class="fa-solid fa-face-grin-stars"></i>
-                    </div>
-                </div>
-                <div class="butt_div">
-                    <button class="confirm-but">Odeslat</button>
-                </div>
-            </div>
-        </div>
-=======
-        <h2>Dotazník:</h2>
+        div
         <div class="question-block">
+            <h2>Dotazník:</h2>
             <p>Jakou máš náladu?</p>
             <div class="blocks">
                 <div class="colorblock" id="col1">
@@ -62,10 +32,10 @@
                     <i class="fa-solid fa-face-grin-stars" onclick="change_val(event)"></i>
                 </div>
             </div>
+            <button class="confirm-but" onclick="send_summary()">Odeslat</button>
         </div>
-        <button class="confirm-but" onclick="send_summary()">Odeslat</button>
+        
 
->>>>>>> 0017548 (getting data from questions)
         <div class="nav_bar">
             <div onclick="home()" id="home_button" class="nav_button selected">
                 <i class="fa-solid fa-house nav_icon"></i>
