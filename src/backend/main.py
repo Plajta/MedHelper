@@ -6,11 +6,7 @@ import uuid
 from . import socketio
 from .models import Patient, Doctor
 from . import db
-from .userapp import UserApp
 main = Blueprint('main', __name__)
-
-
-userApp = UserApp()
 
 def process_patients():
     patient_list = []
@@ -50,8 +46,8 @@ def index():
     return render_template('main.html')
 
 @main.route('/app')
-def shitApp():
-    userApp.returnWeb()
+def appmain():
+    return render_template('user_app_main.html')
 
 @main.route('/admin')
 @login_required
