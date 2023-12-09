@@ -16,11 +16,11 @@ main = Blueprint('main', __name__)
 
 def genQR():
     pattern = "[^0-9a-zA-Z]+"
-    if os.path.isdir(path):
+    if os.path.isdir("/tmp/medhelper"):
         shutil.rmtree("/tmp/medhelper")
-    else:
-        os.mkdir("/tmp/medhelper")
+    os.mkdir("/tmp/medhelper")
     for placement in Placement.query.all():
+        print(f'{url_for("main.app", _external=True)}?uuid={placement.id}')
         img = qrcode.make(f'{url_for("main.app", _external=True)}?uuid={placement.id}')
         img.save(f"/tmp/medhelper/QR_{re.sub(pattern, '_', placement.placement)}.png")
     return shutil.make_archive("/tmp/medhelper_positions", "zip", "/tmp/medhelper")
