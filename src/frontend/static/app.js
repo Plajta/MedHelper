@@ -83,4 +83,47 @@ function send_summary(){
 window.onload = () => {
     socket = io();
 
+    var chat = document.getElementById("chat-input")
+    var url = window.location.href.split("?")[1]
+    var uuid = url.split("=")[1]
+
+    socket.emit("load-chat", {
+            "uuid": uuid,
+            "type": "messages"
+    })
+
+    socket.on("update-messages", (message_list) => {
+        console.log("BallZZZZZ")
+
+        let chat_div = document.getElementsByClassName("chat_div")[0]
+
+        for (let i = chat_div.children.length - 1; i >= 0; i--){
+            chat_div.removeChild(chat_div.children[i])
+        }
+
+        //load chat
+
+        //let header = document.getElementById("popup").getElementsByTagName("h3")[0]
+        //header.innerHTML = "Chat s uživatelem: " + message_list[0]["name"]
+        //header.id = message_list[0]["uuid"]
+
+        for (let i = 0; i < message_list.length ; i++){
+
+            let message = document.createElement("div")
+
+            if (message_list[i]["response"]){
+                message.classList.add("your-message")
+            }
+            else {
+                message.classList.add("their-message")
+            }
+            message.innerHTML = message_list[i]["message"]
+
+            chat_div.appendChild(message)
+
+        }
+        chat_div.appendChild(document.createElement("br"))
+        chat_div.appendChild(document.createElement("br"))
+        chat_div.appendChild(document.createElement("br"))
+    })
 }

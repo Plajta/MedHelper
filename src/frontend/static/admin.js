@@ -46,6 +46,8 @@ function send_message(){
     socket.emit("admin-event", {body: message_data,
                                 uuid: selected_user_uuid,
                                 command: "response-send"})
+    document.getElementById("chat-input").value = ""
+
     function delay(time) {
         return new Promise(resolve => setTimeout(resolve, time));
     }

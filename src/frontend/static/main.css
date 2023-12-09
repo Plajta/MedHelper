@@ -384,6 +384,8 @@ LOGIN HTML
 
 #conv{
     margin-top: 15px;
+    overflow: scroll;
+    max-height: 400px;
 }
 
 #bot-bar{

@@ -193,7 +193,7 @@ def user_message(data):
     response = False
     timestamp = date.today()
     patient = Patient.query.filter_by(placement_id=placement_id).first()
-    if patient != None:
+    if patient is not None:
         new_message = Message(user_id=patient.id, body=body, response=response, timestamp=timestamp, patient=patient)
 
         db.session.add(new_message)

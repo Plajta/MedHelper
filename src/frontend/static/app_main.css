@@ -1,8 +1,11 @@
 body{
     font-family: 'Montserrat', sans-serif;
 	margin: 0;
-    padding: 25px;
+    padding: 0px;
     background-color: #EEEEEE;
+    overflow:hidden;
+    word-wrap: break-word;
+    overflow-y: scroll;
 }
 
 /*Rescaling*/
@@ -76,7 +79,7 @@ p{
 #bot-bar{
     margin: auto;
     padding: 30px;
-    position: absolute;
+    position: fixed;
     bottom: 350px;
     gap: 10px;
     background-color: #fff;
@@ -110,24 +113,26 @@ p{
 .your-message{
     color: white;
     background-color: #DADFE1;
-    width: 40%;
+    //width: 40%;
     border-radius: 40px 40px 0 40px;
     padding: 30px;
     font-size: 25px;
     margin-left: auto;
     color: #000;
     font-size: 40px;
+    float: right;
 }
 
 .their-message{
     color: black;
     background-color: #fff;
-    width: 40%;
+    //width: 40%;
     border-radius: 0 40px 40px 40px;
     padding: 30px;
     font-size: 25px;
     margin-right: auto;
     font-size: 40px;
+    float: left;
 }
 
 .question-block{
@@ -204,7 +209,7 @@ p{
 }
 
 .main{
-    padding: 50px;
+    padding: 30px;
 }
 .chat_main_div{
     display: flex;
