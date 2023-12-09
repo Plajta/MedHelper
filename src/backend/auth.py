@@ -64,7 +64,7 @@ def signup_post():
     id = str(uuid.uuid4())
 
     # create new user with the form data. Hash the password so plaintext version isn't saved.
-    new_user = Doctor(id=id ,username=username, displayname=displayname, password=generate_password_hash(password, method='sha256'), rank=rank, level=level)
+    new_user = Doctor(id=id ,username=username, displayname=displayname, password=generate_password_hash(password, method='pbkdf2'), rank=rank, level=level)
 
     # add the new user to the database
     db.session.add(new_user)
@@ -94,7 +94,7 @@ def register():
             id = str(uuid.uuid4())
 
             # create new user with the form data. Hash the password so plaintext version isn't saved.
-            new_user = Doctor(id=id ,username=username, displayname=displayname, password=generate_password_hash(password, method='sha256'), rank=rank, level=int(level))
+            new_user = Doctor(id=id ,username=username, displayname=displayname, password=generate_password_hash(password, method='pbkdf2'), rank=rank, level=int(level))
 
             # add the new user to the database
             db.session.add(new_user)
