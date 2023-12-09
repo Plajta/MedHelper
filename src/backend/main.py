@@ -38,7 +38,7 @@ def process_patients():
     message_list = []
 
     for message in Message.query.all():
-        if message.patient is not None:
+        if message.patient is not None and not message.response:
             message_d = {"name": message.patient.name, "uuid": message.user_id, "message": message.body}
             message_list.append(message_d)
 
