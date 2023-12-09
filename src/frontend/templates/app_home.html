@@ -2,12 +2,38 @@
 <html>
     <head>
         <link rel="icon" type="image/png" href="static/favicon.png">
-        <link rel="stylesheet" href="../static/app_main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
         <script src="{{ url_for('static', filename='app.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='app_main.css') }}">
     </head>
-    <body style="background-color: #EEEEEE;">
+    <body>
+        <h2>Dotazník:</h2>
+        <div class="question-block">
+            <p>Jakou máš náladu?</p>
+            <div class="blocks">
+                <div class="colorblock" id="col1">
+                    <i class="fa-solid fa-face-angry"></i>
+                </div>
+                <div class="colorblock" id="col2">
+                    <i class="fa-solid fa-face-frown"></i>
+                </div>
+                <div class="colorblock" id="col3">
+                    <i class="fa-solid fa-face-meh"></i>
+                </div>
+                <div class="colorblock" id="col4">
+                    <i class="fa-solid fa-face-smile"></i>
+                </div>
+                <div class="colorblock" id="col5">
+                    <i class="fa-solid fa-face-smile-beam"></i>
+                </div>
+                <div class="colorblock" id="col6">
+                    <i class="fa-solid fa-face-grin-stars"></i>
+                </div>
+            </div>
+        </div>
+        <button class="confirm-but">Odeslat</button>
+
         <div class="nav_bar">
             <div onclick="home()" id="home_button" class="nav_button selected">
                 <i class="fa-solid fa-house nav_icon"></i>
