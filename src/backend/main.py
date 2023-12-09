@@ -4,11 +4,18 @@ from werkzeug.security import generate_password_hash
 from flask_socketio import SocketIO, emit
 import uuid
 from . import socketio
-from .models import Patient, Doctor, Message
+from .models import Patient, Doctor, Message, Placement
 from . import db
 from datetime import date
+import qrcode
 
 main = Blueprint('main', __name__)
+
+
+def genQR():
+    for placement in Placement.query.all():
+        img = qrcode.make(f'{url_for("main.app", _external=True)}?uuid={placement.id}')
+        img.save(f"temp/QR_%.png")
 
 
 def process_patients():
