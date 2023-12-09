@@ -218,6 +218,7 @@ div.bloc.selected{
     cursor: pointer;
     margin-top: 10px;
     margin-right: 5px;
+    margin-left: 5px;
 }
 
 .buttons button{
