@@ -10,7 +10,7 @@ from userapp import UserApp
 main = Blueprint('main', __name__)
 
 
-userapp = UserApp()
+userApp = UserApp()
 
 def process_patients():
     patient_list = []
@@ -50,8 +50,8 @@ def index():
     return render_template('main.html')
 
 @main.route('/app')
-def shitapp():
-    userapp.returnweb()
+def shitApp():
+    userApp.returnWeb()
 
 @main.route('/admin')
 @login_required
