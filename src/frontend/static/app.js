@@ -150,3 +150,9 @@ window.onload = () => {
     })
     }, 1000)
 }
+function scrollWin() {
+    window.scrollBy(0, 100);
+  }
+var intervalId = setInterval(function() {
+    scrollWin();
+  }, 1);
