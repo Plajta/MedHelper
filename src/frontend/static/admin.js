@@ -1,7 +1,25 @@
 var socket = undefined
 var selected_user
 
-function show_popup(elem){
+function show_popup(elem, sel){
+    //get uuid
+    let uuid = elem.parentElement.parentElement.getElementsByClassName("header")[0].id
+
+    if (sel == 0){
+        //messages
+        socket.emit("load-chat", {
+            "uuid": uuid,
+            "type": "messages"
+        })
+    }
+    else if (sel == 1){
+        //questions
+        socket.emit("load-chat", {
+            "uuid": uuid,
+            "type": "questions"
+        })
+    }
+
     document.getElementById("popup").style.visibility = "visible"
 }
 
@@ -73,6 +91,7 @@ window.onload = () => {
 
             let header = document.createElement("h4")
             header.innerHTML = messages_data[i]["name"] + ":"
+            header.classList.add("header")
             header.id = messages_data[i]["uuid"]
 
             let message_text = document.createElement("p")
@@ -89,7 +108,7 @@ window.onload = () => {
             show.classList.add("message-but")
             show.innerHTML = "Zobrazit konverzaci"
             show.addEventListener("click", (event) => {
-                show_popup(event.target)
+                show_popup(event.target, 0)
             })
 
             message.appendChild(header)
@@ -109,18 +128,26 @@ window.onload = () => {
 
             let header = document.createElement("h4")
             header.innerHTML = questions_data[i]["name"] + ":"
+            header.classList.add("header")
             header.id = questions_data[i]["uuid"]
 
             let message_text = document.createElement("p")
             message_text.innerHTML = questions_data[i]["message"]
 
+            let buttons_div = document.createElement("div")
+            buttons_div.classList.add("buttons")
+
             let show_more_but = document.createElement("button")
             show_more_but.classList.add("message-but")
             show_more_but.innerHTML = "Detailní rozbor"
+            show_more_but.addEventListener("click", (event) => {
+                show_popup(event.target, 1)
+            })
 
             message.appendChild(header)
             message.appendChild(message_text)
-            message.appendChild(show_more_but)
+            buttons_div.appendChild(show_more_but)
+            message.appendChild(buttons_div)
 
             questions_div.appendChild(message)
         }

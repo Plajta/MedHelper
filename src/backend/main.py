@@ -6,7 +6,9 @@ import uuid
 from . import socketio
 from .models import Patient, Doctor
 from . import db
+
 from .userapp import UserApp
+
 main = Blueprint('main', __name__)
 
 
@@ -107,3 +109,23 @@ def handle_message_admin(data):
 
     elif data["command"] == "message-send":
         print(data["body"])
+
+def handle_delete(data):
+    db.session.delete(Patient.query.filter_by(id=data).first())
+    db.session.commit()
+
+@socketio.on("message-send")
+def handle_message_send(data):
+    print(data)
+
+@socketio.on("load-chat")
+def load_chat_data(data):
+    uuid = data["uuid"]
+    print(uuid)
+    if data["type"] == "messages":
+        #load data for messages
+        pass
+    else:
+        #load data for questions
+        pass
+
