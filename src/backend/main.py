@@ -123,6 +123,9 @@ def load_chat_data(data):
     if data["type"] == "messages":
         #load data for messages
         pass
-    else:
+    elif data["type"] == "questions":
         #load data for questions
+        pass
+    else:
+        #load data for patients
         pass

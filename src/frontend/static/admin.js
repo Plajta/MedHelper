@@ -3,10 +3,12 @@ var selected_user
 
 function show_popup(elem, sel){
     //get uuid
-    let uuid = elem.parentElement.parentElement.getElementsByClassName("header")[0].id
+    let uuid = undefined
 
     if (sel == 0){
         //messages
+
+        uuid = elem.parentElement.parentElement.getElementsByClassName("header")[0].id
         socket.emit("load-chat", {
             "uuid": uuid,
             "type": "messages"
@@ -14,9 +16,20 @@ function show_popup(elem, sel){
     }
     else if (sel == 1){
         //questions
+
+        uuid = elem.parentElement.parentElement.getElementsByClassName("header")[0].id
         socket.emit("load-chat", {
             "uuid": uuid,
             "type": "questions"
+        })
+    }
+    else if (sel == 2){
+        //patients
+
+        uuid = elem.parentElement.parentElement.getElementsByClassName("user-header")[0].id
+        socket.emit("load-chat", {
+            "uuid": uuid,
+            "type": "patients"
         })
     }
 
@@ -73,13 +86,25 @@ window.onload = () => {
             let description = document.createElement("p")
             description.innerHTML = `Narození: ${patients_data[i]["birth"]}`
 
+            let buttons_div = document.createElement("div")
+            buttons_div.classList.add("buttons")
+
             let button = document.createElement("button")
             button.innerHTML = "Odstranit"
             button.classList.add("but")
 
+            let show = document.createElement("button")
+            show.classList.add("message-but")
+            show.innerHTML = "Zobrazit konverzaci"
+            show.addEventListener("click", (event) => {
+                show_popup(event.target, 2)
+            })
+
             patient.appendChild(header)
             patient.appendChild(description)
-            patient.appendChild(button)
+            buttons_div.appendChild(button)
+            buttons_div.appendChild(show)
+            patient.appendChild(buttons_div)
 
             patients_div.appendChild(patient)
         }
@@ -100,10 +125,6 @@ window.onload = () => {
             let buttons_div = document.createElement("div")
             buttons_div.classList.add("buttons")
 
-            let respond = document.createElement("button")
-            respond.classList.add("message-but")
-            respond.innerHTML = "Odpovědět"
-
             let show = document.createElement("button")
             show.classList.add("message-but")
             show.innerHTML = "Zobrazit konverzaci"
@@ -114,7 +135,6 @@ window.onload = () => {
             message.appendChild(header)
             message.appendChild(message_text)
 
-            buttons_div.appendChild(respond)
             buttons_div.appendChild(show)
             message.appendChild(buttons_div)
 
