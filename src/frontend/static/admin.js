@@ -46,6 +46,14 @@ function send_message(){
     socket.emit("admin-event", {body: message_data,
                                 uuid: selected_user_uuid,
                                 command: "response-send"})
+    function delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
+
+    delay(500).then(() => socket.emit("load-chat", {
+            "uuid": selected_user_uuid,
+            "type": "messages"
+    }))
 }
 
 window.onload = () => {
