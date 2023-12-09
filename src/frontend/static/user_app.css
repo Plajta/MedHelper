@@ -1,6 +1,8 @@
 body{
 	font-family: 'Montserrat', sans-serif;
-	padding: 35px;
+	margin: 0;
+	padding: 15px;
+	max-width: 100%;
 }
 
 /*Rescaling*/
@@ -8,11 +10,22 @@ h1{
 	font-size: 100px;
 	margin: 0;
 }
-
 h2{
 	font-size: 80px;
 	margin: 0;
 }
+h3{
+	font-size: 50px;
+}
+h4{
+	font-size: 30px;
+	font-weight: bolder;
+	margin: 0;
+}
+p{
+	font-size: 30px;
+}
+
 .name-header i{
 	font-size: 80px;
 	margin-left: 20px;
@@ -23,5 +36,28 @@ h2{
 }
 
 .username{
-	text-decoration: underline dashed #2196F3 10px;
+	text-decoration: underline dashed #5C849A 10px;
+}
+
+.ToS{
+	border: 7px solid black;
+	padding: 15px;
+}
+
+.but{
+	background-color: #5C849A;
+	padding: 50px 100px;
+	font-size: 60px;
+	border-radius: 20px;
+	color: white;
+	margin-top: 30px;
+	width: 100%;
+	cursor: pointer;
+}
+
+.header-third{
+	width: 100%;
+	text-align: center;
+	color: #5C849A;
+	margin-bottom: 50px;
 }

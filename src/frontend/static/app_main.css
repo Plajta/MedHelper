@@ -1,0 +1,89 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+	margin: 0;
+    padding: 15px;
+}
+
+h2{
+    margin: 0;
+}
+
+.nav_bar{
+	position: fixed; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+	background-color: #5C849A;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+.nav_button{
+	margin-top: 40px;
+	height: 260px;
+	width: 300px;
+	background-color: white;
+	border-radius: 50px 50px 0 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.nav_icon{
+	font-size: 150px;
+}
+
+.selected{
+	width: 400px;
+    background-color: #bec9cf;
+}
+
+#chat-input{
+    width: 85%;
+    height: 75px;
+    display: inline-block;
+    font-size: 50px;
+    border: 3px solid black;
+}
+
+#send{
+    font-size: 80px;
+    display: inline-block;
+}
+
+#bot-bar{
+    width: 100%;
+    position: absolute;
+    bottom: 350px;
+}
+
+#chat{
+    background-color: #c8ced1;
+    border-radius: 15px;
+    padding: 20px;
+    height: 1600px;
+}
+
+
+.your-message{
+    color: white;
+    background-color: #09a4f8;
+    width: 40%;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 25px;
+    margin: auto;
+    margin-right: 25px;
+}
+
+.their-message{
+    color: white;
+    background-color: #7e8183;
+    width: 40%;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 25px;
+    margin: auto;
+
+    margin-left: 25px;
+}

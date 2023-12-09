@@ -43,12 +43,15 @@ def process_patients():
     return patient_list, message_list, questions_list
 
 @main.route('/')
-def index():
-    return render_template('main.html')
+def app():
+    return render_template('app_chat.html')
 
-@main.route('/app')
-def shitApp():
-    userApp.returnWeb()
+#
+# WEBAPP SOCKETIO ROUTES
+#
+@socketio.on("message-user-send")
+def user_message(data):
+    print(data)
 
 @main.route('/admin')
 @login_required
