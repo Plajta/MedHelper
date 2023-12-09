@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, url_for
+from flask import Blueprint, render_template, request, flash, url_for, request
 from flask_login import login_required, current_user
 from werkzeug.security import generate_password_hash
 from flask_socketio import SocketIO, emit
@@ -48,7 +48,9 @@ def update_admin_frontend():
 
 @main.route('/')
 def app_first():
-    return render_template('app_first.html')
+    uuid = request.args.get('uuid', default = None, type = str)
+    username = Patient.query.filter_by(id=uuid).first().name
+    return render_template('app_first.html',username=username)
 
 @main.route('/sec-init')
 def app_second():
@@ -64,7 +66,7 @@ def app_home():
 
 @main.route('/chat')
 def app_chat():
-    print(url_for("main.app", _external=True))
+    print(url_for("main.app_home", _external=True))
     return render_template('app_chat.html')
 
 @main.route('/profile')
@@ -134,3 +136,15 @@ def user_message(data):
     db.session.commit()
 
     update_admin_frontend()
+
+@socketio.on("load-chat")
+def load_chat(data):
+    uuid = data["uuid"]
+    
+    message_list = []
+
+    if data["type"] == "messages":
+        for message in Message.query.all():
+            message_d={"name": message.patient.name, "uuid": message.user_id, "message": message.body}
+            message_list.append(message_d)
+    emit("update-messages", me)
