@@ -191,6 +191,7 @@ input:checked + .slider:before {
 
 .main-content{
     overflow-y: scroll;
+    margin-top: 20px;
 }
 
 div.bloc.selected{
