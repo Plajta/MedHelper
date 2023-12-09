@@ -18,16 +18,11 @@ def process_patients():
             patient_d[column.name] = str(getattr(patient, column.name))
         patient_list.append(patient_d)
 
-    message_list = [{
-        "name": "Žena #1",
-        "uuid": "abgjakgb",
-        "message": "Yo nezavřeli jste okno, fakt díky"
-    },
-    {
-        "name": "Muž #1",
-        "uuid": "anjgkanklg",
-        "message": "Otevřete okno?"
-    }]
+    message_list = []
+
+    for message in Message.query.all():
+        message_d={"name":message.patient.name, "uuid": message.user_id, "message": message.body}
+        message_list.append(message_d)
 
     questions_list = [{
         "name": "Žena #1",
@@ -87,6 +82,21 @@ def admin():
 def about():
     return render_template("about.html")
 
+@socketio.on("message-user-send")
+def user_message(data):
+    user_id = data["uuid"]
+    body = data["message"]
+    response = False
+    timestamp = date.today()
+    patient = Patient.query.filter_by(id=user_id).first()
+
+    new_message = Message(user_id=user_id, body=body, response=response, timestamp=timestamp, patient=patient)
+
+    db.session.add(new_message)
+    db.session.commit()
+
+    print(new_message)
+
 #
 # SOCKETIO ROUTES
 #
@@ -134,8 +144,3 @@ def handle_message_admin(data):
         timestamp = date.fromtimestamp()
 
         new_message = Message()
-
-
-@socketio.on("message-user-send")
-def user_message(data):
-    print(data)
