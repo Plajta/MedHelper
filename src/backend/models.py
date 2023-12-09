@@ -22,3 +22,4 @@ class Placement(db.Model):
 class Messages(db.Model):
     sender_id = db.Column(db.String(36), primary_key=True)
     body = db.Column(db.Text)
+    timestamp = db.Column(db.Integer)
