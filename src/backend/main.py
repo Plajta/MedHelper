@@ -6,9 +6,7 @@ import uuid
 from . import socketio
 from .models import Patient, Doctor
 from . import db
-
 from .userapp import UserApp
-
 main = Blueprint('main', __name__)
 
 
@@ -128,4 +126,3 @@ def load_chat_data(data):
     else:
         #load data for questions
         pass
-
