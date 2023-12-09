@@ -219,21 +219,25 @@ def load_chat(data):
 def send_space(data):
     name = data
 
-    print(data)
-
     id = str(uuid.uuid4())
 
     new_placement = Placement(id=id, placement=name)
-
-    print(new_placement)
 
     db.session.add(new_placement)
     db.session.commit()
 
 @socketio.on("summary-data")
 def handle_summary(data):
-    print(data)
+    placement_id = data["uuid"]
+    data = data["data"]
+    timestamp = date.today()
 
+    patient = Patient.query.filter_by(placement_id=placement_id).first()
+
+    new_questinnaire = Questionnaire(user_id=patient.id, answers=str(data), timestamp=timestamp, patient=patient)
+
+    db.session.add(new_questinnaire)
+    db.session.commit()
     #1 - unhappy
     #2 - ...
     #3
