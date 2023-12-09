@@ -8,14 +8,16 @@ from .models import Patient, Doctor, Message, Placement
 from . import db
 from datetime import date
 import qrcode
+import re
 
 main = Blueprint('main', __name__)
 
 
 def genQR():
+    pattern = "[^0-9a-zA-Z]+"
     for placement in Placement.query.all():
         img = qrcode.make(f'{url_for("main.app", _external=True)}?uuid={placement.id}')
-        img.save(f"temp/QR_%.png")
+        img.save(f"/tmp/medhelper/QR_{re.sub(pattern, '_', placement.placement)}.png")
 
 
 def process_patients():
