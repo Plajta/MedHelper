@@ -40,11 +40,11 @@
                     <input type="date" id="birth" name="birth" value="2001-09-11" min="2000-01-01" max="2099-12-31" /><br>
                 
                     <label for="space">Přiřazené místo/místnost:</label>
+                    <p>{{places[0].placement}}</p>
                     <select id="space" name="space">
-                        <option value="Postel1">Postel1</option>
-                        <option value="Postel2">Postel2</option>
-                        <option value="Postel3">Postel3</option>
-                        <option value="Postel4">Postel4</option>
+                        {% for place in places %}
+                        <option value="{{place.id}}">{{place.placement}}</option>
+                        {% endfor %}
                     </select><br>
 
                     <button type="button" class="but" id="confirm-but">Potvrdit</button>
@@ -66,13 +66,13 @@
         <!--Popup window-->
         <div id="container">
             <div id="popup">
-                <h3>Chat s uživatel: TvojeMama#42</h3>
+                <h3>Chat s uživatel: User</h3>
                 <div id="conv">
                     <div class="your-message">
-                        <p>Umři</p>
+                        <p>Tesst1</p>
                     </div>
                     <div class="their-message">
-                        <p>Ty taky</p>
+                        <p>Test2</p>
                     </div>
                 </div>
                 <div id="bot-bar">

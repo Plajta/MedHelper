@@ -128,7 +128,7 @@ def admin():
     rank = current_user.rank
     level = current_user.level
 
-    return render_template('admin.html', displayname=displayname, rank=rank, level=level)
+    return render_template('admin.html', displayname=displayname, rank=rank, level=level, places=Placement.query.all())
 
 
 @main.route("/about")
