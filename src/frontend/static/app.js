@@ -50,6 +50,16 @@ function send_message(){
     })
 
     chat.value = ""
+
+
+    function delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
+
+    delay(500).then(() => socket.emit("load-chat-by-bed", {
+            "uuid": uuid,
+            "type": "messages"
+    }))
 }
 
 //questionnare funcs
