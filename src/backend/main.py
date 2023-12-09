@@ -125,7 +125,7 @@ def handle_message_admin(data):
     elif data["command"] == "patient-data":
         name = data["name"]
         birth = data["birth"]
-        placement = None
+        placement = data["space"]
 
         id = str(uuid.uuid4())
 
