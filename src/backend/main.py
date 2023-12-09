@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, url_for, request
+from flask import Blueprint, render_template, request, flash, url_for, request, redirect, send_file
 from flask_login import login_required, current_user
 from werkzeug.security import generate_password_hash
 from flask_socketio import SocketIO, emit
@@ -113,6 +113,12 @@ def admin():
 def about():
     return render_template("about.html")
 
+@main.route("/download")
+def download():
+    path = genQR()
+
+    return send_file(path, as_attachment=True)
+
 
 #
 # SOCKETIO ROUTES
@@ -149,7 +155,6 @@ def handle_message_admin(data):
         timestamp = date.fromtimestamp()
 
         new_message = Message()
-
 
 @socketio.on("message-user-send")
 def user_message(data):

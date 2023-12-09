@@ -6,4 +6,8 @@ window.onload = () => {
         
         socket.emit("send-space", space)
     })
+
+    document.getElementById("zip-download").addEventListener("click", () => {
+        window.location.href = "/download"
+    })
 }
