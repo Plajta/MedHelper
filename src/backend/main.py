@@ -41,13 +41,16 @@ def process_patients():
 
     return patient_list, message_list, questions_list
 
+#
+# USER WEBAPP ROUTES
+#
 @main.route('/')
-def index():
-    return render_template('main.html')
+def app():
+    return render_template('user_app_firststep.html')
 
-@main.route('/app')
-def appmain():
-    return render_template('user_app_main.html')
+#
+# ADMIN ROUTES
+#
 
 @main.route('/admin')
 @login_required

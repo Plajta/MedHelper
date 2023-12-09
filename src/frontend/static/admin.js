@@ -1,5 +1,5 @@
 var socket = undefined
-var selected_user
+var selected_user_uuid = undefined
 
 function show_popup(elem, sel){
     //get uuid
@@ -32,6 +32,7 @@ function show_popup(elem, sel){
             "type": "patients"
         })
     }
+    selected_user_uuid = uuid
 
     document.getElementById("popup").style.visibility = "visible"
 }
@@ -42,7 +43,8 @@ function close_popup(){
 
 function send_message(){
     var message_data = document.getElementById("chat-input").value
-    socket.emit("admin-event", { body: message_data })
+    socket.emit("admin-event", { body: message_data,
+                                uuid: selected_user_uuid})
 }
 
 window.onload = () => {
