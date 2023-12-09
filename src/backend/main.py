@@ -71,9 +71,9 @@ def about():
 #
 @socketio.on("admin-event")
 def handle_message_admin(data):
-    if data == "send-patients":
-        print("Send patients!")
-
+    if not isinstance(data, dict):
+        return
+    if data["command"] == "send-patients":
         patient_list, message_list, questions_list = process_patients()
 
         emit("patients-data", {
@@ -82,31 +82,28 @@ def handle_message_admin(data):
             "questions": questions_list
         })
 
-@socketio.on("patient-data")
-def handle_patient_data(data):
-    name = data[0]
-    birth = data[1]
+    elif data["command"] == "patient-data":
+        name = data["name"]
+        birth = data["birth"]
 
-    id = str(uuid.uuid4())
+        id = str(uuid.uuid4())
 
-    new_patient = Patient(name=name, birth=birth, id=id)
+        new_patient = Patient(name=name, birth=birth, id=id)
 
-    db.session.add(new_patient)
-    db.session.commit()
+        db.session.add(new_patient)
+        db.session.commit()
 
-    patient_list, message_list, questions_list = process_patients()
+        patient_list, message_list, questions_list = process_patients()
 
-    emit("patients-data", {
-            "patients": patient_list,
-            "messages": message_list,
-            "questions": questions_list
-    })
+        emit("patients-data", {
+                "patients": patient_list,
+                "messages": message_list,   
+                "questions": questions_list
+        })
+    
+    elif data["command"] == "delete-patient":
+        db.session.delete(Patient.query.filter_by(id=data["uuid"]).first())
+        db.session.commit()
 
-@socketio.on("delete-patient")
-def handle_delete(data):
-    db.session.delete(Patient.query.filter_by(id=data).first())
-    db.session.commit()
-
-@socketio.on("message-send")
-def handle_message_send(data):
-    print(data)
+    elif data["command"] == "message-send":
+        print(data["body"])

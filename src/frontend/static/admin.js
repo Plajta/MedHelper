@@ -11,7 +11,7 @@ function close_popup(){
 
 function send_message(){
     var message_data = document.getElementById("chat-input").value
-    socket.emit("message-send", message_data)
+    socket.emit("admin-event", { body: message_data })
 }
 
 window.onload = () => {
@@ -20,7 +20,7 @@ window.onload = () => {
     //socket.io event listeners
     socket.on("connect", () => {
         //fetch all patients (only for admin part)
-        socket.emit("admin-event", "send-patients")
+        socket.emit("admin-event", { command: "send-patients"})
         
     })
 
@@ -130,10 +130,10 @@ window.onload = () => {
             if (patients_div.children[i].tagName == "DIV"){
                 patients_div.children[i].getElementsByClassName("but")[0].addEventListener("click", (event) => {
                     var userid = event.target.parentElement.getElementsByClassName("user-header")[0].id
-                    socket.emit("delete-patient", userid)
+                    socket.emit("admin-event", { command: "delete-patient", uuid: userid})
 
                     //get new patients
-                    socket.emit("admin-event", "send-patients")
+                    socket.emit("admin-event", { command: "send-patients"})
                 })
             }
         }
@@ -141,8 +141,8 @@ window.onload = () => {
 
     //event listeners
     document.querySelector("#confirm-but").addEventListener("click", (event) => {
-        let name = document.getElementById("name").value
-        let birth = document.getElementById("birth").value
-        socket.emit("patient-data", [name, birth])
+        let name_var = document.getElementById("name").value
+        let birth_var = document.getElementById("birth").value
+        socket.emit("admin-event", { command: "patient-data", name: name_var, birth: birth_var})
     })
 }
