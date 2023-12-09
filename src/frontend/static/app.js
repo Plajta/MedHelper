@@ -32,7 +32,7 @@ function send_message(){
 
     socket.emit("message-user-send", {
         "message": chat.value,
-        "user_id": uuid
+        "uuid": uuid
     })
 
     chat.value = ""
