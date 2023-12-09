@@ -188,14 +188,13 @@ def handle_message_admin(data):
 
 @socketio.on("message-user-send")
 def user_message(data):
-    user_id = data["uuid"]
+    placement_id = data["uuid"]
     body = data["message"]
     response = False
     timestamp = date.today()
-    patient = Patient.query.filter_by(placement_id=user_id).first()
-    
+    patient = Patient.query.filter_by(placement_id=placement_id).first()
     if patient != None:
-        new_message = Message(user_id=user_id, body=body, response=response, timestamp=timestamp, patient=patient)
+        new_message = Message(user_id=patient.id, body=body, response=response, timestamp=timestamp, patient=patient)
 
         db.session.add(new_message)
         db.session.commit()
