@@ -155,11 +155,11 @@ def handle_message_admin(data):
     elif data["command"] == "patient-data":
         name = data["name"]
         birth = data["birth"]
-        placement = data["space"]
+        placement_id = data["space"]
 
         id = str(uuid.uuid4())
 
-        new_patient = Patient(name=name, birth=birth, id=id)
+        new_patient = Patient(name=name, birth=birth, id=id, placement_id=placement_id)
 
         print(new_patient)
 
