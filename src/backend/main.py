@@ -67,9 +67,8 @@ def app_first():
     uuid = request.args.get('uuid', default=None, type=str)
     if uuid == None:
         return render_template("response_client.html", code="401", message="nemáš oprávnění, špatné user info")
-    # username = Patient.query.filter_by(id=uuid).first().name
-    # TODO: load username!
-    return render_template('app_first.html')
+    username = Patient.query.filter_by(placement_id=uuid).first().name
+    return render_template('app_first.html',username=username)
 
 
 @main.route('/sec-init')
@@ -77,8 +76,8 @@ def app_second():
     uuid = request.args.get('uuid', default=None, type=str)
     if uuid == None:
         return render_template("response_client.html", code="401", message="nemáš oprávnění, špatné user info")
-
-    return render_template('app_second.html')
+    username = Patient.query.filter_by(placement_id=uuid).first().name
+    return render_template('app_second.html',username=username)
 
 
 @main.route('/third-init')
