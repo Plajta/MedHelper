@@ -76,6 +76,8 @@ def app_second():
     uuid = request.args.get('uuid', default=None, type=str)
     if uuid == None:
         return render_template("response_client.html", code="401", message="nemáš oprávnění, špatné user info")
+    print(uuid)
+    uuid = uuid.split('?')[0]
     username = Patient.query.filter_by(placement_id=uuid).first().name
     return render_template('app_second.html',username=username)
 
