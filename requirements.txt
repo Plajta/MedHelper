@@ -1,0 +1,5 @@
+qrcode
+flask-socketio
+werkzeug
+flask-login
+flask
