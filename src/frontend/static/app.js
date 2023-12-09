@@ -27,12 +27,12 @@ function profile(){
 function send_message(){
     var chat = document.getElementById("chat-input")
     var url = window.location.href.split("?")[1]
-    var user_hash = url.split("=")[1]
-    console.log(user_hash)
+    var uuid = url.split("=")[1]
+    console.log(uuid)
 
     socket.emit("message-user-send", {
         "message": chat.value,
-        "user_id": user_hash
+        "user_id": uuid
     })
 
     chat.value = ""
