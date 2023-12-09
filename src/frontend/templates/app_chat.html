@@ -8,19 +8,18 @@
         <script src="{{ url_for('static', filename='app.js') }}"></script>
     </head>
     <body>
-        <div class="chat_div">
-            <div class="your-message">
-                <h2>Nemáš nic, jsi smradlavej</h2>
-            </div>
-            <div class="their-message">
-                <h2>Ty taky, neboj</h2>
+        <div class="main">
+            <div class="chat_main_div">
+                <div class="chat_div">
+                    <div class="your-message">Nemáš nic, jsi smradlavej</div>
+                    <div class="their-message">Ty taky, neboj</div>
+                </div>
+                <div id="bot-bar">
+                    <input type="text" id="chat-input" name="fname" placeholder="Napiš...">
+                    <i id="send" class="fa-solid fa-paper-plane" onclick="send_message()"></i>
+                </div>
             </div>
         </div>
-        <div id="bot-bar">
-            <input type="text" id="chat-input" name="fname" placeholder="Napiš...">
-            <i id="send" class="fa-solid fa-paper-plane" onclick="send_message()"></i>
-        </div>
-
         <div class="nav_bar">
             <div onclick="home()" id="home_button" class="nav_button">
                 <i class="fa-solid fa-house nav_icon"></i>
