@@ -9,15 +9,19 @@ from . import db
 from datetime import date
 import qrcode
 import re
+import os, shutil
 
 main = Blueprint('main', __name__)
 
 
 def genQR():
     pattern = "[^0-9a-zA-Z]+"
+    shutil.rmtree("/tmp/medhelper")
+    os.mkdir("/tmp/medhelper")
     for placement in Placement.query.all():
         img = qrcode.make(f'{url_for("main.app", _external=True)}?uuid={placement.id}')
         img.save(f"/tmp/medhelper/QR_{re.sub(pattern, '_', placement.placement)}.png")
+    return shutil.make_archive("/tmp/medhelper_positions", "zip", "/tmp/medhelper")
 
 
 def process_patients():
