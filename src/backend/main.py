@@ -6,6 +6,7 @@ import uuid
 from . import socketio
 from .models import Patient, Doctor
 from . import db
+from datetime import date
 main = Blueprint('main', __name__)
 
 def process_patients():
@@ -41,16 +42,13 @@ def process_patients():
 
     return patient_list, message_list, questions_list
 
-#
-# USER WEBAPP ROUTES
-#
 @main.route('/')
-def app():
-    return render_template('user_app_firststep.html')
+def index():
+    return render_template('main.html')
 
-#
-# ADMIN ROUTES
-#
+@main.route('/app')
+def shitApp():
+    userApp.returnWeb()
 
 @main.route('/admin')
 @login_required
@@ -70,7 +68,7 @@ def about():
 #
 @socketio.on("admin-event")
 def handle_message_admin(data):
-    if not isinstance(data, dict):
+    if not isinstance(data, dict) and data.has_key("command"):
         return
     if data["command"] == "send-patients":
         patient_list, message_list, questions_list = process_patients()
@@ -105,15 +103,8 @@ def handle_message_admin(data):
         db.session.commit()
 
     elif data["command"] == "message-send":
-        print(data["body"])
-
-def handle_delete(data):
-    db.session.delete(Patient.query.filter_by(id=data).first())
-    db.session.commit()
-
-@socketio.on("message-send")
-def handle_message_send(data):
-    print(data)
+        body = data["body"]
+        timestamp = date.fromtimestamp()
 
 @socketio.on("load-chat")
 def load_chat_data(data):
