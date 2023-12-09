@@ -110,7 +110,18 @@ def register():
     if current_user.level == 0:
         return render_template("register.html")
     else:
-        return "401 - Operation not permitted", 401
+        return render_template("response.html", code="401", message="Operation not permitted")
+    
+@auth.route("/register-space", methods=['GET', 'POST'])
+def register_space():
+    if request.method == "POST":
+        bed_name = request.form.get("space")
+        print(bed_name)
+
+    if current_user.level == 0:
+        return render_template("register_space.html")
+    else:
+        return render_template("response.html", code="401", message="Operation not permitted")
 
 
 @auth.route('/logout')

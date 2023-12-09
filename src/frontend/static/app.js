@@ -27,14 +27,14 @@ function Continue(dest){
     var url = window.location.href.split("?")[1]
     var uuid = url.split("=")[1]
 
-    window.location.href = dest + "?user=" + uuid + "?checked=1"
+    window.location.href = dest + "?uuid=" + uuid + "?checked=1"
 }
 
 function ContinueAndSend(){
     var url = window.location.href.split("?")[1]
     var uuid = url.split("=")[1]
 
-    window.location.href = "/home?user=" + uuid + "?checked=1"
+    window.location.href = "/home?uuid=" + uuid + "?checked=1"
 }
 
 //chat funcs

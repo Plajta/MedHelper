@@ -53,8 +53,9 @@ def update_admin_frontend():
 @main.route('/')
 def app_first():
     uuid = request.args.get('uuid', default = None, type = str)
-    username = Patient.query.filter_by(id=uuid).first().name
-    return render_template('app_first.html',username=username)
+    #username = Patient.query.filter_by(id=uuid).first().name
+    #TODO: load username!
+    return render_template('app_first.html')
 
 
 @main.route('/sec-init')

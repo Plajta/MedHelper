@@ -302,6 +302,11 @@ LOGIN HTML
     font-weight: bold;
 }
 
+#login-text2{
+    font-weight: bold;
+    height: 18px;
+}
+
 .login-header{
     text-align: center;
 }
@@ -458,10 +463,33 @@ REGISTRATION HTML
     transition: 0.3s;
 }
 
+.space-registration-but{
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    padding: 18px;
+    margin-right: 50px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.space-registration-but:hover{
+    background-color: #ccc;
+    color: black;
+    transition: 0.3s;
+}
+
 .reg-form{
     width: 75%;
 }
 
 .reg-form .form{
     width: 80%;
+}
+
+.reg-form .form2{
+    width: 40%;
+    height: 28px;
 }
