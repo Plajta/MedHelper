@@ -7,13 +7,15 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
         <script src="{{ url_for('static', filename='app.js') }}"></script>
     </head>
-    <body>
+    <body style="background-color: #fff;">
         <div class="main">
-            <h2 class="header-third">Vše je hotovo</h2>
-            <div style="margin: auto; text-align:center;">
-                <i style="font-size: 400pt; color:#5C849A;" class="fa-regular fa-face-smile-wink"></i>
+            <div class="wrap">
+                <h2 class="header-third">Vše je hotovo</h2>
+                <div style="margin: auto; text-align:center;">
+                    <i style="font-size: 400pt; color:#5C849A;" class="fa-regular fa-face-smile-wink"></i>
+                </div>
+                <button onclick='ContinueAndSend()' class="but">Pokračovat</button>
             </div>
-            <button onclick='ContinueAndSend()' class="but">Pokračovat</button>
         </div>
     </body>
 </html>
