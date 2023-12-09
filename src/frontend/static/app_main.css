@@ -2,6 +2,7 @@ body{
     font-family: 'Montserrat', sans-serif;
 	margin: 0;
     padding: 25px;
+    background-color: #EEEEEE;
 }
 
 /*Rescaling*/
@@ -39,7 +40,7 @@ p{
 .nav_button{
 	margin-top: 40px;
 	height: 260px;
-	width: 300px;
+    width: 250px;
 	background-color: white;
 	border-radius: 50px 50px 0 0;
 	display: flex;
@@ -51,7 +52,6 @@ p{
 }
 
 .selected{
-	width: 400px;
     background-color: #bec9cf;
 }
 
@@ -69,11 +69,28 @@ p{
 }
 
 #bot-bar{
-    width: 100%;
     position: absolute;
+    margin: auto;
+    padding: 30px;
+    gap: 40px;
     bottom: 350px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 20px;
 }
-
+#bot-bar input{
+    border: none;
+}
+#bot-bar input{
+    border: none;
+}
+#bot-bar input:focus {
+    outline: none !important;
+    border: none;
+    box-shadow: none;
+  }
 #chat{
     background-color: #c8ced1;
     border-radius: 15px;
@@ -106,24 +123,28 @@ p{
 }
 
 .question-block{
-    background-color: #5C849A;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
     color: white;
-    border-radius: 10px;
-    padding: 10px;
+    padding: 50px;
+    color: #000;
+    border-radius: 50px;
 }
 
 .colorblock{
-    display: inline-block;
-    width: 140px;
-    height: 140px;
+    display: flex;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 30px;
     margin-left: 5px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
 }
 
 .colorblock i{
-    font-size: 135px;
-    margin-left: 4px;
+    font-size: 70px;
 }
 
 #col1{
@@ -155,12 +176,25 @@ p{
     justify-content: center;
 }
 
+
 .confirm-but{
-    width: 100%;
     height: 76px;
     font-size: 50px;
-    margin-top: 25px;
-    border-radius: 10px;
-    border: 8px solid black;
+    margin: 25px;
+    border-radius: 20px;
+    border: none;
     cursor: pointer;
+    background-color: #5C849A;
+    color: #fff;
+    padding: 10px 40px;
+    justify-self: end;
+}
+.butt_div{
+	display: flex;
+	flex-direction: row;
+	justify-content: end;
+}
+
+.main{
+    padding: 50px;
 }
