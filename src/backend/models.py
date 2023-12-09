@@ -16,9 +16,10 @@ class Patient(db.Model):
     id = db.Column(db.String(36), primary_key=True, unique=True)
     birth = db.Column(db.String(16))
     name = db.Column(db.String(255))
+    placement_id = db.Column(db.String(36), unique=True)
 
     def __repr__(self):
-        return f"<Patient {self.id}>"
+        return f"<Patient {self.id} on {self.placement_id}>"
 
 class Placement(db.Model):
     __tablename__ = 'placements'
@@ -35,6 +36,19 @@ class Message(db.Model):
     patient = relationship("Patient", back_populates = "messages")
 
     def __repr__(self):
-        return f"<Message {self.id}>"
+        return f"<Message {self.id} by {self.patient}>"
+
+class Questionnaire(db.Model):
+    __tablename__ = 'questionnaires'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.String(36), db.ForeignKey("patients.id"))
+    answers = db.Column(db.Text)
+    timestamp = db.Column(db.DateTime)
+    patient = relationship("Patient", back_populates = "questionnaires")
+
+    def __repr__(self):
+        return f"<Questionnaire {self.id} by {self.patient}>"
+
 
 Patient.messages = relationship("Message", order_by = Message.timestamp, back_populates = "patient")
+Patient.questionnaires = relationship("Questionnaire", order_by = Questionnaire.timestamp, back_populates = "patient")
