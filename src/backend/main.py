@@ -176,3 +176,7 @@ def load_chat(data):
             message_d = {"name": message.patient.name, "uuid": message.user_id, "message": message.body, "response": message.response}
             message_list.append(message_d)
     emit("update-messages", message_list)
+
+@socketio.on("send-space")
+def send_space(data):
+    print(data)
