@@ -114,10 +114,10 @@ window.onload = () => {
             let message = document.createElement("div")
 
             if (message_list[i]["response"]){
-                message.classList.add("your-message")
+                message.classList.add("their-message")
             }
             else {
-                message.classList.add("their-message")
+                message.classList.add("your-message")
             }
             message.innerHTML = message_list[i]["message"]
 
