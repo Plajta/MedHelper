@@ -147,7 +147,7 @@ def download():
 #
 @socketio.on("admin-event")
 def handle_message_admin(data):
-    if not isinstance(data, dict) and "command" in data:
+    if not isinstance(data, dict) or not "command" in data:
         return
     if data["command"] == "send-patients":
         update_admin_frontend()

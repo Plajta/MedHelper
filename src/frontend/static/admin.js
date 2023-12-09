@@ -43,8 +43,9 @@ function close_popup(){
 
 function send_message(){
     var message_data = document.getElementById("chat-input").value
-    socket.emit("admin-event", { body: message_data,
-                                uuid: selected_user_uuid})
+    socket.emit("admin-event", {body: message_data,
+                                uuid: selected_user_uuid,
+                                command: "message-send"})
 }
 
 window.onload = () => {
