@@ -37,7 +37,7 @@ def process_patients():
 
     return patient_list, message_list, questions_list
 
-def update_frontend():
+def update_admin_frontend():
     patient_list, message_list, questions_list = process_patients()
 
     emit("patients-data", {
@@ -92,7 +92,7 @@ def handle_message_admin(data):
     if not isinstance(data, dict) and data.has_key("command"):
         return
     if data["command"] == "send-patients":
-        update_frontend()
+        update_admin_frontend()
 
     elif data["command"] == "patient-data":
         name = data["name"]
@@ -108,7 +108,7 @@ def handle_message_admin(data):
         db.session.add(new_patient)
         db.session.commit()
 
-        update_frontend()
+        update_admin_frontend()
     
     elif data["command"] == "delete-patient":
         db.session.delete(Patient.query.filter_by(id=data["uuid"]).first())
@@ -133,4 +133,4 @@ def user_message(data):
     db.session.add(new_message)
     db.session.commit()
 
-    update_frontend()
+    update_admin_frontend()
