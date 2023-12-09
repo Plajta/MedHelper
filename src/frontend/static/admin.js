@@ -66,12 +66,16 @@ window.onload = () => {
         let messages_div = document.getElementById("messages")
         let questions_div = document.getElementById("questions")
 
+        //remove patients
         for (let i = patients_div.children.length - 1; i >= 0; i--){;
             if (patients_div.children[i].tagName == "DIV"){
                 patients_div.removeChild(patients_div.children[i])
             }
         }
+        
+        //remove messages
         messages_div.innerHTML = ""
+        //remove questions
         questions_div.innerHTML = ""
 
         //add patients
@@ -112,6 +116,9 @@ window.onload = () => {
         }
 
         //add messages
+        if (messages_data.length == 0){
+            messages_div.innerHTML = "žádné zprávy"
+        }
         for (let i = 0; i < messages_data.length; i++){
             let message = document.createElement("div")
             message.classList.add("message")
@@ -144,6 +151,9 @@ window.onload = () => {
         }
 
         //add questions
+        if (questions_data.length == 0){
+            questions_div.innerHTML = "žádné ankety"
+        }
         for (let i = 0; i < questions_data.length; i++){
             let message = document.createElement("div")
             message.classList.add("message")
