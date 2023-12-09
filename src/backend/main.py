@@ -172,11 +172,19 @@ def handle_message_admin(data):
         db.session.delete(Patient.query.filter_by(id=data["uuid"]).first())
         db.session.commit()
 
-    elif data["command"] == "message-send":
+    elif data["command"] == "response-send":
         body = data["body"]
-        timestamp = date.fromtimestamp()
+        user_id = data["uuid"]
+        timestamp = date.today()
+        response = True
+        patient = Patient.query.filter_by(id=user_id).first()
 
-        new_message = Message()
+        new_message = Message(user_id=user_id, body=body, response=response, timestamp=timestamp, patient=patient)
+
+        db.session.add(new_message)
+        db.session.commit()
+
+        update_admin_frontend()
 
 @socketio.on("message-user-send")
 def user_message(data):
