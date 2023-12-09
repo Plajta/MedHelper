@@ -238,6 +238,8 @@ def handle_summary(data):
 
     db.session.add(new_questinnaire)
     db.session.commit()
+
+    update_admin_frontend()
     #1 - unhappy
     #2 - ...
     #3
