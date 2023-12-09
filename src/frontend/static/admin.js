@@ -58,7 +58,6 @@ window.onload = () => {
     })
 
     socket.on("patients-data", (data) => {
-        console.log("Balls")
         let patients_data = data["patients"]
         let messages_data = data["messages"]
         let questions_data = data["questions"]
