@@ -20,19 +20,23 @@ def process_patients():
 
     message_list = [{
         "name": "Žena #1",
+        "uuid": "abgjakgb",
         "message": "Yo nezavřeli jste okno, fakt díky"
     },
     {
         "name": "Muž #1",
+        "uuid": "anjgkanklg",
         "message": "Otevřete okno?"
     }]
 
     questions_list = [{
         "name": "Žena #1",
+        "uuid": "nbknakgmaů",
         "message": "Tato nemocnice se mi nelíbí, je cringe"
     },
     {
         "name": "Muž #1",
+        "uuid": "najkkgnal",
         "message": "Otevřete okno?"
     }]
 
@@ -59,8 +63,6 @@ def about():
 #
 # SOCKETIO ROUTES
 #
-
-
 @socketio.on("admin-event")
 def handle_message_admin(data):
     if data == "send-patients":
@@ -98,3 +100,7 @@ def handle_patient_data(data):
 def handle_delete(data):
     db.session.delete(Patient.query.filter_by(id=data).first())
     db.session.commit()
+
+@socketio.on("message-send")
+def handle_message_send(data):
+    print(data)

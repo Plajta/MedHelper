@@ -333,6 +333,84 @@ LOGIN HTML
     transition: 0.3s;
 }
 
+#container{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#popup{
+    z-index: 3;
+    position: absolute;
+    background-color: #dad5d5;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    visibility: hidden;
+}
+
+.your-message{
+    background-color: #2196F3;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    width: 120px;
+    margin: auto;
+    margin-right: 0px;
+}
+
+.their-message{
+    background-color: #ccc;
+    color: black;
+    border-radius: 10px;
+    padding: 5px;
+    width: 120px;
+    margin: auto;
+    margin-left: 0px;
+}
+
+#conv{
+    margin-top: 15px;
+}
+
+#bot-bar{
+    margin-top: 15px;
+}
+
+#bot-bar input, #bot-bar i{
+    display: inline-block;
+}
+
+i#send{
+    color: black;
+}
+i#send:hover{
+    color: #2196F3;
+}
+
+#chat-input{
+    width: 90%;
+}
+
+.conv-but{
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: 0;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.conv-but:hover{
+    background-color: #504e4e;
+    color: #ddd;
+}
+
+
 .dark-mode{
     background-color: #333;
     color: white;

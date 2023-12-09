@@ -53,6 +53,26 @@
             </div>
         </div>
 
+        <!--Popup window-->
+        <div id="container">
+            <div id="popup">
+                <h3>Chat s uživatel: TvojeMama#42</h3>
+                <div id="conv">
+                    <div class="your-message">
+                        <p>Umři</p>
+                    </div>
+                    <div class="their-message">
+                        <p>Ty taky</p>
+                    </div>
+                </div>
+                <div id="bot-bar">
+                    <input type="text" id="chat-input" name="fname" placeholder="Napiš...">
+                    <i id="send" class="fa-solid fa-paper-plane" onclick="send_message()"></i>
+                </div>
+                <button class="conv-but" onclick="close_popup()">Zavřít konverzaci</button>
+            </div>
+        </div>
+
         <div class="footer">
             <p>Made by Plajta Labs, on <a href="https://github.com/Plajta/MedHelper">Github</a></p>
         </div>

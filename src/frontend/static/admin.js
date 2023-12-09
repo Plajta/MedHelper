@@ -1,5 +1,21 @@
+var socket = undefined
+var selected_user
+
+function show_popup(elem){
+    document.getElementById("popup").style.visibility = "visible"
+}
+
+function close_popup(){
+    document.getElementById("popup").style.visibility = "hidden"
+}
+
+function send_message(){
+    var message_data = document.getElementById("chat-input").value
+    socket.emit("message-send", message_data)
+}
+
 window.onload = () => {
-    var socket = io();
+    socket = io();
 
     //socket.io event listeners
     socket.on("connect", () => {
@@ -57,6 +73,7 @@ window.onload = () => {
 
             let header = document.createElement("h4")
             header.innerHTML = messages_data[i]["name"] + ":"
+            header.id = messages_data[i]["uuid"]
 
             let message_text = document.createElement("p")
             message_text.innerHTML = messages_data[i]["message"]
@@ -71,6 +88,9 @@ window.onload = () => {
             let show = document.createElement("button")
             show.classList.add("message-but")
             show.innerHTML = "Zobrazit konverzaci"
+            show.addEventListener("click", (event) => {
+                show_popup(event.target)
+            })
 
             message.appendChild(header)
             message.appendChild(message_text)
@@ -89,6 +109,7 @@ window.onload = () => {
 
             let header = document.createElement("h4")
             header.innerHTML = questions_data[i]["name"] + ":"
+            header.id = questions_data[i]["uuid"]
 
             let message_text = document.createElement("p")
             message_text.innerHTML = questions_data[i]["message"]
