@@ -9,6 +9,9 @@ from . import db
 from userapp import UserApp
 main = Blueprint('main', __name__)
 
+
+userapp = UserApp()
+
 def process_patients():
     patient_list = []
 
@@ -46,6 +49,9 @@ def process_patients():
 def index():
     return render_template('main.html')
 
+@main.route('/app')
+def shitapp():
+    userapp.returnweb()
 
 @main.route('/admin')
 @login_required
