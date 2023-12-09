@@ -43,7 +43,6 @@ function send_message(){
     var chat = document.getElementById("chat-input")
     var url = window.location.href.split("?")[1]
     var uuid = url.split("=")[1]
-    console.log(uuid)
 
     socket.emit("message-user-send", {
         "message": chat.value,
@@ -72,7 +71,13 @@ function change_val(event){
 }
 
 function send_summary(){
-    socket.emit("summary-data", selected_idx)
+    var url = window.location.href.split("?")[1]
+    var uuid = url.split("=")[1]
+
+    socket.emit("summary-data", {
+        "data": selected_idx,
+        "uuid": uuid
+    })
 }
 
 window.onload = () => {
