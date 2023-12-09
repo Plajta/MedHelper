@@ -55,6 +55,11 @@ p{
     background-color: #bec9cf;
 }
 
+.selected-sum{
+    color: black;
+}
+
+
 #chat-input{
     width: 85%;
     height: 75px;

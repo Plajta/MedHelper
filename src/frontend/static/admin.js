@@ -240,6 +240,7 @@ window.onload = () => {
         let name_var = document.getElementById("name").value
         let birth_var = document.getElementById("birth").value
         let sel_space_obj = document.getElementById("space")
+
         let sel_space = sel_space_obj.options[sel_space_obj.selectedIndex].value;
 
         socket.emit("admin-event", { command: "patient-data", name: name_var, birth: birth_var, space: sel_space})

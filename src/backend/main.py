@@ -229,3 +229,14 @@ def send_space(data):
 
     db.session.add(new_placement)
     db.session.commit()
+
+@socketio.on("summary-data")
+def handle_summary(data):
+    print(data)
+
+    #1 - unhappy
+    #2 - ...
+    #3
+    #4 - content
+    #5 - happy
+    #6 - extremely happy
