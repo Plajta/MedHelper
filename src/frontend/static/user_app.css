@@ -147,6 +147,7 @@ h1, h2, h3, h4, h5, h6 {
 	height: 30px;
 	border-radius: 50%;
 	background-color: #D9D9D9;
+	align-self: center;
 }
 .kolecko2{
 	width: 60px;
@@ -168,6 +169,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .news_card_description{
 	margin-left: 10px;
+	display: flex;
+	gap: 20px;
+	align-items: baseline;
 }
 .emtrydiv{
 	height: 350px;
@@ -177,11 +181,46 @@ h1, h2, h3, h4, h5, h6 {
 position: fixed;
 width: 180px;
 height: 180px;
-background-color: #5C849A;
+background-color: #325E76;
 bottom: 380px;
-right: 95px;
+right: 80px;
 border-radius: 50%;
 display: flex;
 justify-content: center;
 align-items: center;
+
+}
+.hashtag{
+	background-color: #C2F4F4;
+	border-radius: 10px;
+	text-align: center;
+}
+.q_form{
+	position: fixed;
+	bottom: 380px;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	background-color: #fff;
+	border-radius: 30px;
+}
+.q_form button{
+	background-color: #fff;
+	border: none;
+	padding: 30px;
+	border-radius: 30px;
+}
+.answer{
+	width: 55%;
+	padding: 30px;
+	border-radius: 0 40px 40px 40px;
+	background-color: #fff;
+}
+.question{
+	width: 55%;
+	padding: 30px;
+	border-radius: 40px 40px 0 40px;
+	background-color: #DADFE1;
+	margin-left: auto;
 }
