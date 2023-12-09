@@ -19,9 +19,9 @@ def genQR():
     if os.path.isdir("/tmp/medhelper"):
         shutil.rmtree("/tmp/medhelper")
     os.mkdir("/tmp/medhelper")
+    print(Placement.query.all())
     for placement in Placement.query.all():
-        print(f'{url_for("main.app", _external=True)}?uuid={placement.id}')
-        img = qrcode.make(f'{url_for("main.app", _external=True)}?uuid={placement.id}')
+        img = qrcode.make(f'{url_for("main.app_first", _external=True)}?uuid={placement.id}')
         img.save(f"/tmp/medhelper/QR_{re.sub(pattern, '_', placement.placement)}.png")
     return shutil.make_archive("/tmp/medhelper_positions", "zip", "/tmp/medhelper")
 
@@ -188,9 +188,13 @@ def load_chat(data):
 def send_space(data):
     name = data
 
+    print(data)
+
     id = str(uuid.uuid4())
 
     new_placement = Placement(id=id, placement=name)
+
+    print(new_placement)
 
     db.session.add(new_placement)
     db.session.commit()
