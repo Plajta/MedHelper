@@ -87,13 +87,15 @@ window.onload = () => {
     var url = window.location.href.split("?")[1]
     var uuid = url.split("=")[1]
 
-    socket.emit("load-chat", {
+    socket.emit("load-chat-by-bed", {
             "uuid": uuid,
             "type": "messages"
     })
 
     socket.on("update-messages", (message_list) => {
         console.log("BallZZZZZ")
+
+        console.log(message_list)
 
         let chat_div = document.getElementsByClassName("chat_div")[0]
 

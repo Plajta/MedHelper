@@ -215,6 +215,20 @@ def load_chat(data):
             message_list.append(message_d)
     emit("update-messages", message_list)
 
+@socketio.on("load-chat-by-bed")
+def load_chat_by_bed(data):
+    placement_id = data["uuid"]
+
+    message_list = []
+
+    patient = Patient.query.filter_by(placement_id=placement_id).first()
+
+    if data["type"] == "messages":
+        for message in Message.query.filter_by(user_id=patient.id):
+            message_d = {"name": message.patient.name, "uuid": message.user_id, "message": message.body,
+                         "response": message.response}
+            message_list.append(message_d)
+    emit("update-messages", message_list)
 
 @socketio.on("send-space")
 def send_space(data):
