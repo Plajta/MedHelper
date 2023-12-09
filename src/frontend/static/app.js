@@ -26,7 +26,14 @@ function profile(){
 //chat funcs
 function send_message(){
     var chat = document.getElementById("chat-input")
-    socket.emit("message-user-send", chat.value)
+    var url = window.location.href.split("?")[1]
+    var user_hash = url.split("=")[1]
+    console.log(user_hash)
+
+    socket.emit("message-user-send", {
+        "message": chat.value,
+        "user_id": user_hash
+    })
 
     chat.value = ""
 }

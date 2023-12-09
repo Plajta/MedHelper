@@ -46,6 +46,8 @@ def process_patients():
 def app():
     return render_template('app_chat.html')
 
+
+
 #
 # WEBAPP SOCKETIO ROUTES
 #
