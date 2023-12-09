@@ -183,14 +183,15 @@ def user_message(data):
     body = data["message"]
     response = False
     timestamp = date.today()
-    patient = Patient.query.filter_by(id=user_id).first()
+    patient = Patient.query.filter_by(placement_id=user_id).first()
+    
+    if patient != None:
+        new_message = Message(user_id=user_id, body=body, response=response, timestamp=timestamp, patient=patient)
 
-    new_message = Message(user_id=user_id, body=body, response=response, timestamp=timestamp, patient=patient)
+        db.session.add(new_message)
+        db.session.commit()
 
-    db.session.add(new_message)
-    db.session.commit()
-
-    update_admin_frontend()
+        update_admin_frontend()
 
 
 @socketio.on("load-chat")
