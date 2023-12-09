@@ -172,7 +172,7 @@ def load_chat(data):
     message_list = []
 
     if data["type"] == "messages":
-        for message in Message.query.all():
-            message_d={"name": message.patient.name, "uuid": message.user_id, "message": message.body}
+        for message in Message.query.filter_by(user_id=uuid):
+            message_d = {"name": message.patient.name, "uuid": message.user_id, "message": message.body, "response": message.response}
             message_list.append(message_d)
     emit("update-messages", message_list)
