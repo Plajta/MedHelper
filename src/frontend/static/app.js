@@ -138,4 +138,15 @@ window.onload = () => {
         chat_div.appendChild(document.createElement("br"))
         chat_div.appendChild(document.createElement("br"))
     })
+
+    setInterval(function(){
+
+    var chat = document.getElementById("chat-input")
+    var url = window.location.href.split("?")[1]
+    var uuid = url.split("=")[1]
+    socket.emit("load-chat-by-bed", {
+            "uuid": uuid,
+            "type": "messages"
+    })
+    }, 1000)
 }

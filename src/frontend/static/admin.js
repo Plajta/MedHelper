@@ -255,4 +255,11 @@ window.onload = () => {
 
         socket.emit("admin-event", { command: "patient-data", name: name_var, birth: birth_var, space: sel_space})
     })
+
+    setInterval(function(){
+    socket.emit("load-chat", {
+            "uuid": selected_user_uuid,
+            "type": "messages"
+    })
+    }, 1000)
 }
