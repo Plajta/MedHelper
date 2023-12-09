@@ -24,7 +24,6 @@ class Placement(db.Model):
     __tablename__ = 'placements'
     id = db.Column(db.String(36), primary_key=True, unique=True)
     placement = db.Column(db.String(255))
-    patient_id = db.Column(db.Integer, unique=True)
 
 class Message(db.Model):
     __tablename__ = 'messages'
